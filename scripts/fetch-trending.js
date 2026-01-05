@@ -5,6 +5,9 @@ import path from 'path';
 
 const GITHUB_TRENDING_URL = 'https://github.com/trending';
 
+// 翻译 API 配置 - 使用 MyMemory Translation API（免费，无需密钥，每日限制）
+const TRANSLATE_API = 'https://api.mymemory.translated.net/get';
+
 /**
  * 抓取 GitHub Trending 数据
  * @param {string} period - since: daily, weekly, monthly
@@ -83,6 +86,83 @@ async function fetchTrending(period = 'daily') {
     console.error(`抓取 ${period} trending 数据失败:`, error);
     throw error;
   }
+}
+
+/**
+ * 翻译文本为中文
+ * @param {string} text - 要翻译的文本
+ * @returns {Promise<string>} 翻译后的文本
+ */
+async function translateToChinese(text) {
+  if (!text || text.trim() === '') return text;
+
+  try {
+    // 如果已经包含中文字符，跳过翻译
+    if (/[\u4e00-\u9fa5]/.test(text)) {
+      return text;
+    }
+
+    const response = await fetch(`${TRANSLATE_API}?q=${encodeURIComponent(text)}&langpair=en|zh-CN`);
+
+    if (!response.ok) {
+      console.warn('   ⚠️  翻译服务不可用，保留原文');
+      return text;
+    }
+
+    const data = await response.json();
+
+    // 检查翻译结果
+    if (data.responseStatus === 200 && data.responseData?.translatedText) {
+      const translated = data.responseData.translatedText;
+      // 如果翻译结果和原文相同，说明可能是翻译失败
+      if (translated !== text) {
+        return translated;
+      }
+    }
+
+    // 尝试使用 matches 数据
+    if (data.matches && data.matches.length > 0) {
+      const bestMatch = data.matches.find(m => m.quality > 70);
+      if (bestMatch && bestMatch.translation !== text) {
+        return bestMatch.translation;
+      }
+    }
+
+    return text;
+  } catch (error) {
+    console.warn('   ⚠️  翻译失败，保留原文:', error.message);
+    return text;
+  }
+}
+
+/**
+ * 批量翻译（限制并发数）
+ * @param {Array} items - 需要翻译的项目数组
+ * @param {number} concurrency - 并发数
+ * @returns {Promise<Array>} 翻译后的数组
+ */
+async function batchTranslate(items, concurrency = 3) {
+  const results = [];
+  for (let i = 0; i < items.length; i += concurrency) {
+    const batch = items.slice(i, i + concurrency);
+    const translated = await Promise.all(
+      batch.map(async (item) => {
+        if (item.description) {
+          process.stdout.write(`   🌐 翻译中 ${item.position}/${items.length}...\r`);
+          const translatedDesc = await translateToChinese(item.description);
+          return { ...item, description: translatedDesc };
+        }
+        return item;
+      })
+    );
+    results.push(...translated);
+    // 添加延迟避免请求过快
+    if (i + concurrency < items.length) {
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
+  }
+  process.stdout.write('   ✅ 翻译完成\n');
+  return results;
 }
 
 /**
@@ -187,12 +267,17 @@ async function main() {
     const data = await fetchTrending(period);
     console.log(`   找到 ${data.length} 个仓库`);
 
-    await saveData(period, data);
+    // 翻译描述
+    console.log('   🌐 开始翻译描述为中文...');
+    const translatedData = await batchTranslate(data, 3);
+
+    await saveData(period, translatedData);
 
     // 显示前3个
     console.log('   Top 3:');
-    data.slice(0, 3).forEach((repo, i) => {
-      console.log(`     ${i + 1}. ${repo.fullName} - ⭐ ${repo.periodStars} (${repo.language || 'N/A'})`);
+    translatedData.slice(0, 3).forEach((repo, i) => {
+      const desc = repo.description ? ` - ${repo.description.substring(0, 50)}...` : '';
+      console.log(`     ${i + 1}. ${repo.fullName} - ⭐ ${repo.periodStars} (${repo.language || 'N/A'})${desc}`);
     });
     console.log('');
   }
