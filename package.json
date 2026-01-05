@@ -9,7 +9,9 @@
     "serve": "node server.js",
     "dev": "node server.js",
     "build": "npm run fetch && npm run build:data",
-    "export": "node scripts/export-data.js"
+    "export": "node scripts/export-data.js",
+    "deploy": "./scripts/deploy-gh-pages.sh",
+    "deploy:full": "npm run build && npm run deploy"
   },
   "keywords": [
     "github",
