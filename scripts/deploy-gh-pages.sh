@@ -29,8 +29,8 @@ npm run build:data
 # 部署到 gh-pages 分支
 echo "📦 部署到 gh-pages 分支..."
 
-# 使用 git subtree 推送
-git subtree push --prefix public origin gh-pages --force
+# 使用 git subtree 推送（不使用 --force）
+git subtree push --prefix public origin gh-pages
 
 echo "✅ 部署完成！"
 echo ""
