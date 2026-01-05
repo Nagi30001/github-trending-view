@@ -707,9 +707,23 @@
     </div>
   </div>
 
+  <script src="data.js"></script>
   <script>
     let currentPeriod = 'daily';
     let availableDates = {};
+    let isStaticMode = false;
+
+    // 检测是否为静态模式（GitHub Pages）
+    function detectMode() {
+      // 检查是否有预加载数据
+      if (typeof window.GITHUB_TRENDING_DATA !== 'undefined') {
+        isStaticMode = true;
+        console.log('📊 静态模式：使用预加载数据');
+        return true;
+      }
+      console.log('🔌 动态模式：使用 API');
+      return false;
+    }
 
     // 语言颜色映射
     const languageColors = {
@@ -762,6 +776,9 @@
 
     // 初始化事件监听
     document.addEventListener('DOMContentLoaded', () => {
+      // 检测运行模式
+      detectMode();
+
       // Tab 切换
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -785,11 +802,21 @@
     // 初始化
     async function init() {
       try {
-        const response = await fetch('/api/data-files');
-        if (!response.ok) throw new Error('获取数据失败');
-
-        const data = await response.json();
-        availableDates = data;
+        if (isStaticMode) {
+          // 静态模式：使用预加载数据
+          const data = window.GITHUB_TRENDING_DATA;
+          availableDates = {
+            daily: data.daily.map(item => ({ filename: item.filename, period: item.period, date: item.date })),
+            weekly: data.weekly.map(item => ({ filename: item.filename, period: item.period, date: item.date })),
+            monthly: data.monthly.map(item => ({ filename: item.filename, period: item.period, date: item.date }))
+          };
+        } else {
+          // 动态模式：从 API 获取
+          const response = await fetch('/api/data-files');
+          if (!response.ok) throw new Error('获取数据失败');
+          const data = await response.json();
+          availableDates = data;
+        }
 
         updateDateOptions();
         await loadData();
@@ -841,11 +868,23 @@
       `;
 
       try {
-        const url = `/api/trending/${currentPeriod}${selectedDate ? `?date=${selectedDate}` : ''}`;
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('获取数据失败');
+        let data;
 
-        const data = await response.json();
+        if (isStaticMode) {
+          // 静态模式：从预加载数据获取
+          const periodData = window.GITHUB_TRENDING_DATA[currentPeriod];
+          const matched = periodData.find(item => item.date === selectedDate);
+          if (!matched) {
+            throw new Error(`未找到 ${currentPeriod} ${selectedDate} 的数据`);
+          }
+          data = matched.data;
+        } else {
+          // 动态模式：从 API 获取
+          const url = `/api/trending/${currentPeriod}${selectedDate ? `?date=${selectedDate}` : ''}`;
+          const response = await fetch(url);
+          if (!response.ok) throw new Error('获取数据失败');
+          data = await response.json();
+        }
 
         // 更新统计信息
         document.getElementById('data-date').textContent = formatDateDisplay(data.date);

@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "fetch": "node scripts/fetch-trending.js",
-    "update-data": "node scripts/update-data.js",
+    "build:data": "node scripts/generate-static-data.js",
     "serve": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "build": "npm run fetch && npm run build:data"
   },
   "keywords": [
     "github",
