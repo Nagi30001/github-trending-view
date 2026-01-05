@@ -716,7 +716,11 @@
     // 检测是否为静态模式（GitHub Pages）
     function detectMode() {
       // 检查是否有预加载数据
-      if (typeof window.GITHUB_TRENDING_DATA !== 'undefined') {
+      if (typeof window.GITHUB_TRENDING_DATA !== 'undefined' &&
+          window.GITHUB_TRENDING_DATA &&
+          (window.GITHUB_TRENDING_DATA.daily.length > 0 ||
+           window.GITHUB_TRENDING_DATA.weekly.length > 0 ||
+           window.GITHUB_TRENDING_DATA.monthly.length > 0)) {
         isStaticMode = true;
         console.log('📊 静态模式：使用预加载数据');
         return true;
