@@ -90,15 +90,23 @@ async function fetchTrending(period = 'daily') {
  */
 function parseNumber(text) {
   if (!text) return 0;
+
+  // 移除所有非数字、小数点、k、m的字符
   const numStr = text.replace(/[^0-9.km]/gi, '').toLowerCase();
   if (!numStr) return 0;
 
-  if (numStr.includes('k')) {
-    return parseInt(parseFloat(numStr) * 1000);
-  } else if (numStr.includes('m')) {
-    return parseInt(parseFloat(numStr) * 1000000);
+  // 提取数字部分
+  const numberPart = parseFloat(numStr.replace(/[km]/g, ''));
+  if (isNaN(numberPart)) return 0;
+
+  // 根据单位进行转换
+  if (numStr.includes('m')) {
+    return Math.round(numberPart * 1000000);
+  } else if (numStr.includes('k')) {
+    return Math.round(numberPart * 1000);
   }
-  return parseInt(numStr) || 0;
+
+  return Math.round(numberPart);
 }
 
 /**
