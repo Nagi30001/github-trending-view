@@ -91,18 +91,34 @@ async function fetchTrending(period = 'daily') {
 function parseNumber(text) {
   if (!text) return 0;
 
-  // 移除所有非数字、小数点、k、m的字符
-  const numStr = text.replace(/[^0-9.km]/gi, '').toLowerCase();
+  const lowerText = text.toLowerCase();
+
+  // 检查是否有 k/m 单位（使用 lookbehind + lookahead 确保是独立的单位字符）
+  // (?<=\d|\.) 表示前面必须是数字或小数点
+  // (?=\s|$) 表示后面必须是空格或字符串结束
+  const hasK = /(?<=\d|\.)k(?=\s|$)/.test(lowerText);
+  const hasM = /(?<=\d|\.)m(?=\s|$)/.test(lowerText);
+
+  // 提取数字部分（包括逗号和小数点）
+  let numStr = lowerText.replace(/[^0-9.,]/g, '');
   if (!numStr) return 0;
 
-  // 提取数字部分
-  const numberPart = parseFloat(numStr.replace(/[km]/g, ''));
+  // 如果没有 k/m 单位，逗号是千位分隔符，直接移除
+  if (!hasK && !hasM) {
+    numStr = numStr.replace(/,/g, '');
+    const number = parseFloat(numStr);
+    return isNaN(number) ? 0 : Math.round(number);
+  }
+
+  // 有 k/m 单位时，小数点是十进制，逗号需要移除
+  numStr = numStr.replace(/,/g, '');
+  const numberPart = parseFloat(numStr);
   if (isNaN(numberPart)) return 0;
 
   // 根据单位进行转换
-  if (numStr.includes('m')) {
+  if (hasM) {
     return Math.round(numberPart * 1000000);
-  } else if (numStr.includes('k')) {
+  } else if (hasK) {
     return Math.round(numberPart * 1000);
   }
 
