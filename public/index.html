@@ -12,19 +12,25 @@
     }
 
     :root {
-      --bg-primary: #0f0f23;
-      --bg-secondary: #1a1a2e;
-      --bg-card: rgba(255, 255, 255, 0.05);
-      --glass-bg: rgba(255, 255, 255, 0.03);
-      --glass-border: rgba(255, 255, 255, 0.1);
-      --text-primary: #ffffff;
-      --text-secondary: #a0a0a0;
-      --accent-purple: #b794f6;
-      --accent-blue: #6eb5ff;
-      --accent-pink: #ff7eb6;
-      --gradient-1: linear-gradient(135deg, #b794f6 0%, #6eb5ff 100%);
-      --gradient-2: linear-gradient(135deg, #ff7eb6 0%, #b794f6 100%);
-      --shadow-glow: 0 0 20px rgba(183, 148, 246, 0.3);
+      --bg-primary: #fef7f0;
+      --bg-secondary: #ffffff;
+      --bg-card: rgba(255, 255, 255, 0.9);
+      --glass-bg: rgba(255, 255, 255, 0.8);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --text-primary: #1c1917;
+      --text-secondary: #78716c;
+      --accent-orange: #f97316;
+      --accent-amber: #f59e0b;
+      --accent-yellow: #eab308;
+      --accent-red: #ef4444;
+      --gradient-1: linear-gradient(135deg, #f97316 0%, #f59e0b 100%);
+      --gradient-2: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+      --gradient-3: linear-gradient(135deg, #eab308 0%, #f59e0b 100%);
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-glow: 0 4px 20px rgba(249, 115, 22, 0.25);
+      --shadow-glow-lg: 0 8px 30px rgba(249, 115, 22, 0.3);
     }
 
     body {
@@ -45,8 +51,25 @@
       right: 0;
       bottom: 0;
       background:
-        radial-gradient(circle at 20% 50%, rgba(183, 148, 246, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 50%, rgba(110, 181, 255, 0.1) 0%, transparent 50%);
+        radial-gradient(circle at 20% 50%, rgba(249, 115, 22, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(245, 158, 11, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(234, 179, 8, 0.04) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* 网格背景图案 */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        linear-gradient(rgba(249, 115, 22, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(249, 115, 22, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
       pointer-events: none;
       z-index: 0;
     }
@@ -67,14 +90,16 @@
     }
 
     .header h1 {
-      font-size: 3em;
-      font-weight: 800;
+      font-size: 3.5em;
+      font-weight: 900;
       background: var(--gradient-1);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 10px;
-      letter-spacing: -1px;
+      margin-bottom: 12px;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      filter: drop-shadow(0 2px 4px rgba(249, 115, 22, 0.1));
     }
 
     .header p {
@@ -86,17 +111,36 @@
     /* Glass Card */
     .glass-card {
       background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
       border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 25px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow-md),
+                  0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.8),
+        transparent
+      );
     }
 
     .glass-card:hover {
-      box-shadow: var(--shadow-glow);
+      box-shadow: var(--shadow-glow),
+                  0 0 0 1px rgba(249, 115, 22, 0.1) inset;
+      transform: translateY(-2px);
     }
 
     /* Controls Section */
@@ -119,6 +163,7 @@
       padding: 6px;
       border-radius: 12px;
       border: 1px solid var(--glass-border);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
 
     .tab-btn {
@@ -147,12 +192,14 @@
 
     .tab-btn:hover {
       color: var(--text-primary);
+      background: rgba(249, 115, 22, 0.08);
     }
 
     .tab-btn.active {
-      color: var(--text-primary);
+      color: #ffffff;
       background: var(--gradient-1);
-      box-shadow: var(--shadow-glow);
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
+      transform: scale(1.02);
     }
 
     .date-selector {
@@ -184,38 +231,68 @@
 
     .date-input:focus {
       outline: none;
-      border-color: var(--accent-purple);
-      box-shadow: 0 0 0 3px rgba(183, 148, 246, 0.1);
+      border-color: var(--accent-orange);
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
     }
 
     .date-input::-webkit-calendar-picker-indicator {
-      filter: invert(1);
-      opacity: 0.7;
+      opacity: 0.6;
       cursor: pointer;
+      filter: invert(0);
     }
 
     .refresh-btn {
-      padding: 12px 24px;
+      padding: 12px 28px;
       background: var(--gradient-1);
       color: white;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       font-size: 14px;
       font-weight: 600;
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       align-items: center;
       gap: 8px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+    }
+
+    .refresh-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .refresh-btn:active::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .refresh-btn .icon {
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .refresh-btn:hover .icon {
+      transform: rotate(180deg);
     }
 
     .refresh-btn:hover {
       transform: translateY(-2px);
-      box-shadow: var(--shadow-glow);
+      box-shadow: var(--shadow-glow-lg);
     }
 
     .refresh-btn:active {
-      transform: translateY(0);
+      transform: translateY(0) scale(0.98);
     }
 
     /* Stats Grid */
@@ -233,7 +310,8 @@
       padding: 24px;
       position: relative;
       overflow: hidden;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-sm);
     }
 
     .stat-card::before {
@@ -248,12 +326,29 @@
       transition: opacity 0.3s ease;
     }
 
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
     .stat-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-glow);
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: var(--shadow-lg),
+                  0 0 0 1px rgba(249, 115, 22, 0.1) inset;
     }
 
     .stat-card:hover::before {
+      opacity: 1;
+    }
+
+    .stat-card:hover::after {
       opacity: 1;
     }
 
@@ -290,6 +385,7 @@
       padding: 30px;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
     }
 
     .panel-title {
@@ -300,6 +396,10 @@
       display: flex;
       align-items: center;
       gap: 12px;
+    }
+
+    .panel-title .icon {
+      flex-shrink: 0;
     }
 
     .panel-title::before {
@@ -319,11 +419,12 @@
     .repo-card {
       background: var(--bg-card);
       border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      padding: 20px;
-      transition: all 0.3s ease;
+      border-radius: 18px;
+      padding: 22px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
+      box-shadow: var(--shadow-sm);
     }
 
     .repo-card::before {
@@ -332,20 +433,36 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 2px;
+      height: 3px;
       background: var(--gradient-1);
       transform: scaleX(0);
-      transition: transform 0.3s ease;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-origin: left;
+    }
+
+    .repo-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(249, 115, 22, 0.05) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
     }
 
     .repo-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(183, 148, 246, 0.3);
-      box-shadow: 0 12px 40px rgba(183, 148, 246, 0.15);
+      transform: translateY(-6px) scale(1.01);
+      border-color: rgba(249, 115, 22, 0.25);
+      box-shadow: var(--shadow-lg),
+                  0 8px 32px rgba(249, 115, 22, 0.15);
     }
 
     .repo-card:hover::before {
       transform: scaleX(1);
+    }
+
+    .repo-card:hover::after {
+      opacity: 1;
     }
 
     .repo-header {
@@ -364,7 +481,7 @@
     .repo-name a {
       font-size: 1.2em;
       font-weight: 700;
-      color: var(--accent-blue);
+      color: var(--accent-orange);
       text-decoration: none;
       display: block;
       margin-bottom: 4px;
@@ -372,7 +489,7 @@
     }
 
     .repo-name a:hover {
-      color: var(--accent-purple);
+      color: var(--accent-red);
     }
 
     .repo-position {
@@ -412,6 +529,10 @@
       transition: color 0.3s ease;
     }
 
+    .meta-item .icon {
+      flex-shrink: 0;
+    }
+
     .meta-item:hover {
       color: var(--text-primary);
     }
@@ -421,11 +542,11 @@
       align-items: center;
       gap: 6px;
       padding: 4px 12px;
-      background: rgba(183, 148, 246, 0.1);
-      border: 1px solid rgba(183, 148, 246, 0.2);
+      background: rgba(249, 115, 22, 0.1);
+      border: 1px solid rgba(249, 115, 22, 0.2);
       border-radius: 6px;
       font-weight: 600;
-      color: var(--accent-purple);
+      color: var(--accent-orange);
     }
 
     .language-dot {
@@ -436,7 +557,7 @@
     }
 
     .stars-highlight {
-      color: var(--accent-pink);
+      color: var(--accent-red);
       font-weight: 700;
     }
 
@@ -449,16 +570,36 @@
 
     .chart-bar {
       background: var(--bg-card);
-      border-radius: 10px;
-      padding: 12px 16px;
+      border-radius: 12px;
+      padding: 14px 18px;
       border: 1px solid var(--glass-border);
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chart-bar::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--gradient-1);
+      transform: scaleY(0);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .chart-bar:hover {
-      background: rgba(183, 148, 246, 0.05);
-      border-color: rgba(183, 148, 246, 0.2);
-      transform: translateX(4px);
+      background: rgba(249, 115, 22, 0.03);
+      border-color: rgba(249, 115, 22, 0.2);
+      transform: translateX(6px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .chart-bar:hover::before {
+      transform: scaleY(1);
     }
 
     .bar-header {
@@ -488,7 +629,7 @@
 
     .bar-track {
       height: 6px;
-      background: var(--bg-primary);
+      background: #e2e8f0;
       border-radius: 3px;
       overflow: hidden;
     }
@@ -520,16 +661,43 @@
       width: 50px;
       height: 50px;
       border: 3px solid var(--glass-border);
-      border-top-color: var(--accent-purple);
+      border-top-color: var(--accent-orange);
       border-radius: 50%;
-      animation: spin 1s linear infinite;
+      animation: spin 0.8s linear infinite;
       margin: 0 auto 20px;
     }
 
+    .loading-spinner {
+      border-color: #e2e8f0;
+      border-top-color: var(--accent-orange);
+    }
+
+    /* 骨架屏动画 */
+    @keyframes shimmer {
+      0% {
+        background-position: -1000px 0;
+      }
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+
+    .skeleton {
+      background: linear-gradient(
+        90deg,
+        #f0f0f0 25%,
+        #e0e0e0 50%,
+        #f0f0f0 75%
+      );
+      background-size: 1000px 100%;
+      animation: shimmer 2s infinite;
+      border-radius: 4px;
+    }
+
     .error {
-      background: rgba(255, 107, 107, 0.1);
-      border: 1px solid rgba(255, 107, 107, 0.3);
-      color: #ff6b6b;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #dc2626;
       padding: 20px;
       border-radius: 12px;
       text-align: center;
@@ -570,6 +738,33 @@
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.5; }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(249, 115, 22, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 40px rgba(249, 115, 22, 0.4);
+      }
+    }
+
+    /* 添加悬停发光效果到特殊元素 */
+    .stat-value {
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover .stat-value {
+      animation: glow 2s ease-in-out infinite;
     }
 
     /* Responsive Design */
@@ -638,6 +833,25 @@
         font-size: 24px;
       }
     }
+
+    /* SVG Icons */
+    .icon {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .icon-sm {
+      width: 14px;
+      height: 14px;
+    }
+
+    .icon-lg {
+      width: 20px;
+      height: 20px;
+    }
   </style>
 </head>
 <body>
@@ -659,7 +873,10 @@
           <input type="date" id="date-select" class="date-input">
         </div>
         <button class="refresh-btn" onclick="loadData()">
-          <span>🔄</span>
+          <svg class="icon icon-lg" viewBox="0 0 16 16">
+            <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+          </svg>
           <span>刷新</span>
         </button>
       </div>
@@ -686,7 +903,12 @@
 
     <div class="content">
       <div class="panel">
-        <h2 class="panel-title">🚀 热门项目</h2>
+        <h2 class="panel-title">
+          <svg class="icon icon-lg" viewBox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          热门项目
+        </h2>
         <div id="repo-list" class="repo-grid">
           <div class="loading">
             <div class="loading-spinner"></div>
@@ -696,7 +918,13 @@
       </div>
 
       <div class="panel">
-        <h2 class="panel-title">📊 语言分布</h2>
+        <h2 class="panel-title">
+          <svg class="icon icon-lg" viewBox="0 0 16 16">
+            <path d="M6 12.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5ZM3 8.062C3 6.76 4.235 5.765 5.53 5.886a26.58 26.58 0 0 0 4.94 0C11.765 5.765 13 6.76 13 8.062v1.157a.933.933 0 0 1-.765.935c-.845.147-2.34.346-4.235.346-1.895 0-3.39-.2-4.235-.346A.933.933 0 0 1 3 9.219V8.062Zm4.542-.827a.25.25 0 0 0-.217.068l-.92.9a24.767 24.767 0 0 1-1.871-.183.25.25 0 0 0-.068.495c.55.076 1.232.149 2.02.193a.25.25 0 0 0 .189-.071l.754-.736.847 1.71a.25.25 0 0 0 .404.062l.932-.97a25.286 25.286 0 0 0 1.922-.188.25.25 0 0 0-.068-.495c-.538.074-1.207.145-1.98.189a.25.25 0 0 0-.166.076l-.754.785-.842-1.7a.25.25 0 0 0-.182-.135Z"/>
+            <path d="M8.5 1.866a1 1 0 1 0-1 0V3h-2A4.5 4.5 0 0 0 1 7.5V8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1v-.5A4.5 4.5 0 0 0 10.5 3h-2V1.866ZM14 7.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.5A3.5 3.5 0 0 1 5.5 4h5A3.5 3.5 0 0 1 14 7.5Z"/>
+          </svg>
+          语言分布
+        </h2>
         <div id="chart-container" class="chart-container">
           <div class="loading">
             <div class="loading-spinner"></div>
@@ -949,16 +1177,23 @@
               </div>
             ` : ''}
             <div class="meta-item">
-              <span>⭐</span>
+              <svg class="icon icon-sm" viewBox="0 0 16 16">
+                <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/>
+              </svg>
               <span>${formatNumber(repo.stars || 0)}</span>
             </div>
             <div class="meta-item">
-              <span>🍴</span>
+              <svg class="icon icon-sm" viewBox="0 0 16 16">
+                <path d="M5 3.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm0 2.122a2.25 2.25 0 0 0-1.88-1.24V5a.75.75 0 0 0-1.5 0v.319c-.656.14-1.205.627-1.455 1.285A2.95 2.95 0 0 0 .25 8.31c.027.463.137.915.322 1.33a.75.75 0 0 0 1.376-.577 1.45 1.45 0 0 1-.158-.654c-.025-.456.087-.893.304-1.234a.75.75 0 0 0 1.406-.025ZM10.75 5a.75.75 0 0 1 .75.75v.568a2.25 2.25 0 0 0 1.88 1.24v-.183a.75.75 0 0 0 1.5 0v-.319c.656-.14 1.205-.627 1.455-1.285a2.95 2.95 0 0 0 .915-2.705 3.4 3.4 0 0 0-.322-1.33.75.75 0 1 0-1.376.577 1.45 1.45 0 0 1 .158.654c.025.456-.087.893-.304 1.234a.75.75 0 0 0-1.406.025v-.506ZM5.75 11a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1-.75-.75Zm-2.5-4a.75.75 0 0 0 0 1.5h9.5a.75.75 0 0 0 0-1.5h-9.5Zm-1.21 4.5a3.003 3.003 0 0 0 2.055 1.835c.432.07.878.1 1.33.085a.75.75 0 0 0 .055-1.5 5.188 5.188 0 0 1-.875-.085 1.503 1.503 0 0 1-1.03-.915.75.75 0 0 0-1.535.58Zm10.92 0a3.003 3.003 0 0 1-2.055 1.835c-.432.07-.878.1-1.33.085a.75.75 0 0 1-.055-1.5c.29-.01.58-.04.875-.085a1.503 1.503 0 0 0 1.03-.915.75.75 0 0 1 1.535.58ZM5 15a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 0 1.5h-4.5A.75.75 0 0 1 5 15Zm-2-5.25a.75.75 0 0 0 0 1.5h10a.75.75 0 0 0 0-1.5H3Z"/>
+              </svg>
               <span>${formatNumber(repo.forks || 0)}</span>
             </div>
             ${repo.periodStars ? `
               <div class="meta-item">
-                <span class="stars-highlight">📈 +${formatNumber(repo.periodStars)}</span>
+                <svg class="icon icon-sm" viewBox="0 0 16 16" style="fill: var(--accent-pink)">
+                  <path d="M8 12a.75.75 0 0 0 .75-.75V4.56l.72.72a.75.75 0 1 0 1.06-1.06l-2-2a.75.75 0 0 0-1.06 0l-2 2a.75.75 0 1 0 1.06 1.06l.72-.72v6.69A.75.75 0 0 0 8 12ZM3.75 13.5a.75.75 0 0 1 .75-.75h7a.75.75 0 0 1 0 1.5h-7a.75.75 0 0 1-.75-.75ZM7 15.25a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75Z"/>
+                </svg>
+                <span class="stars-highlight">+${formatNumber(repo.periodStars)}</span>
               </div>
             ` : ''}
           </div>
