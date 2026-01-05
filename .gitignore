@@ -1,5 +1,4 @@
 node_modules/
-data/*.json
 !.gitkeep
 *.log
 .DS_Store
