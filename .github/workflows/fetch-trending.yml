@@ -1,0 +1,38 @@
+name: Fetch GitHub Trending
+
+on:
+  schedule:
+    # 每天 UTC 0:00, 8:00, 16:00 运行（北京时间 8:00, 16:00, 0:00）
+    - cron: '0 */8 * * *'
+  workflow_dispatch: # 允许手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-trending:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch trending data
+        run: node scripts/fetch-trending.js
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/
+          git diff --staged --quiet || git commit -m "📊 Update trending data $(date +'%Y-%m-%d %H:%M:%S')"
+          git push

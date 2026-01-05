@@ -1,0 +1,24 @@
+{
+  "name": "github-trending-viewer",
+  "version": "1.0.0",
+  "description": "使用 GitHub 0 成本存储和展示 GitHub Trending 数据",
+  "type": "module",
+  "scripts": {
+    "fetch": "node scripts/fetch-trending.js",
+    "update-data": "node scripts/update-data.js",
+    "serve": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "github",
+    "trending",
+    "visualization"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2"
+  }
+}

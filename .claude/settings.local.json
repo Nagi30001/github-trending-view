@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Edit",
+      "Bash(mkdir:*)",
+      "Skill(gemini)"
+    ]
+  }
+}
