@@ -8,7 +8,8 @@
     "build:data": "node scripts/generate-static-data.js",
     "serve": "node server.js",
     "dev": "node server.js",
-    "build": "npm run fetch && npm run build:data"
+    "build": "npm run fetch && npm run build:data",
+    "export": "node scripts/export-data.js"
   },
   "keywords": [
     "github",
