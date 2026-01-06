@@ -206,6 +206,71 @@ function parseNumber(text) {
 }
 
 /**
+ * 获取昨天的数据并计算排名变化
+ * @param {string} period - 周期类型
+ * @param {Array} currentData - 当前数据
+ * @returns {Promise<Array>} 包含排名变化的数据
+ */
+async function calculateRankChange(period, currentData) {
+  const dataDir = path.join(process.cwd(), 'data');
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayStr = yesterday.toISOString().split('T')[0];
+
+  const yesterdayFile = path.join(dataDir, `${period}-${yesterdayStr}.json`);
+
+  try {
+    const yesterdayData = JSON.parse(await fs.readFile(yesterdayFile, 'utf-8'));
+    const yesterdayRankMap = new Map();
+
+    // 创建昨天的排名映射
+    yesterdayData.repositories.forEach((repo, index) => {
+      yesterdayRankMap.set(repo.fullName, index + 1);
+    });
+
+    // 为今天的数据添加排名变化
+    return currentData.map(repo => {
+      const yesterdayPosition = yesterdayRankMap.get(repo.fullName);
+
+      if (yesterdayPosition === undefined) {
+        // 新上榜
+        return {
+          ...repo,
+          rankChange: 'new',
+          rankChangeValue: null
+        };
+      } else {
+        const change = yesterdayPosition - repo.position;
+
+        let rankChange;
+        if (change > 0) {
+          rankChange = 'up'; // 上升
+        } else if (change < 0) {
+          rankChange = 'down'; // 下降
+        } else {
+          rankChange = 'same'; // 不变
+        }
+
+        return {
+          ...repo,
+          rankChange,
+          rankChangeValue: change,
+          yesterdayPosition
+        };
+      }
+    });
+  } catch (error) {
+    // 如果没有昨天的数据，所有项目标记为新上榜
+    console.log('   ℹ️  未找到昨天数据，所有项目标记为新上榜');
+    return currentData.map(repo => ({
+      ...repo,
+      rankChange: 'new',
+      rankChangeValue: null
+    }));
+  }
+}
+
+/**
  * 保存数据到文件
  */
 async function saveData(period, data) {
@@ -271,13 +336,27 @@ async function main() {
     console.log('   🌐 开始翻译描述为中文...');
     const translatedData = await batchTranslate(data, 3);
 
-    await saveData(period, translatedData);
+    // 计算排名变化
+    console.log('   📈 计算排名变化...');
+    const dataWithRankChange = await calculateRankChange(period, translatedData);
+
+    // 显示排名变化统计
+    const rankUpCount = dataWithRankChange.filter(r => r.rankChange === 'up').length;
+    const rankDownCount = dataWithRankChange.filter(r => r.rankChange === 'down').length;
+    const newCount = dataWithRankChange.filter(r => r.rankChange === 'new').length;
+    const sameCount = dataWithRankChange.filter(r => r.rankChange === 'same').length;
+
+    console.log(`   上升: ${rankUpCount} | 下降: ${rankDownCount} | 新上榜: ${newCount} | 不变: ${sameCount}`);
+
+    await saveData(period, dataWithRankChange);
 
     // 显示前3个
     console.log('   Top 3:');
-    translatedData.slice(0, 3).forEach((repo, i) => {
+    dataWithRankChange.slice(0, 3).forEach((repo, i) => {
       const desc = repo.description ? ` - ${repo.description.substring(0, 50)}...` : '';
-      console.log(`     ${i + 1}. ${repo.fullName} - ⭐ ${repo.periodStars} (${repo.language || 'N/A'})${desc}`);
+      const rankSymbol = repo.rankChange === 'up' ? '↑' : repo.rankChange === 'down' ? '↓' : repo.rankChange === 'new' ? '✨' : '→';
+      const rankText = repo.rankChangeValue ? ` (${repo.rankChangeValue > 0 ? '+' : ''}${repo.rankChangeValue})` : '';
+      console.log(`     ${i + 1}. ${repo.fullName} ${rankSymbol}${rankText} - ⭐ ${repo.periodStars} (${repo.language || 'N/A'})${desc}`);
     });
     console.log('');
   }

@@ -502,6 +502,55 @@
       flex-shrink: 0;
     }
 
+    .position-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .rank-change {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-size: 14px;
+    }
+
+    .rank-change.rank-up {
+      background: rgba(34, 197, 94, 0.1);
+      color: #22c55e;
+    }
+
+    .rank-change.rank-up:hover {
+      background: rgba(34, 197, 94, 0.2);
+      transform: scale(1.1);
+    }
+
+    .rank-change.rank-down {
+      background: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+    }
+
+    .rank-change.rank-down:hover {
+      background: rgba(239, 68, 68, 0.2);
+      transform: scale(1.1);
+    }
+
+    .rank-change.rank-new {
+      background: rgba(249, 115, 22, 0.15);
+      color: var(--accent-orange);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .rank-change.rank-same {
+      background: rgba(156, 163, 175, 0.1);
+      color: #9ca3af;
+    }
+
     .repo-description {
       color: var(--text-secondary);
       font-size: 0.95em;
@@ -1166,7 +1215,14 @@
                 ${repo.author} / ${repo.repoName}
               </a>
             </div>
-            <span class="repo-position">#${repo.position}</span>
+            <div class="position-wrapper">
+              ${repo.rankChange ? `
+                <span class="rank-change rank-${repo.rankChange}" title="${getRankChangeText(repo)}">
+                  ${getRankChangeIcon(repo.rankChange, repo.rankChangeValue)}
+                </span>
+              ` : ''}
+              <span class="repo-position">#${repo.position}</span>
+            </div>
           </div>
           ${repo.description ? `<div class="repo-description">${repo.description}</div>` : ''}
           <div class="repo-meta">
@@ -1239,6 +1295,40 @@
 
       repoList.innerHTML = `<div class="error">${message}</div>`;
       chartContainer.innerHTML = '<div class="error">暂无数据</div>';
+    }
+
+    // 获取排名变化图标
+    function getRankChangeIcon(rankChange, value) {
+      if (rankChange === 'up') {
+        return `<svg class="icon" viewBox="0 0 16 16">
+          <path fill="currentColor" d="M8 12a.75.75 0 0 0 .75-.75V4.56l.72.72a.75.75 0 0 0 1.06-1.06l-2-2a.75.75 0 0 0-1.06 0l-2 2a.75.75 0 1 0 1.06 1.06l.72-.72v6.69A.75.75 0 0 0 8 12Z"/>
+        </svg>`;
+      } else if (rankChange === 'down') {
+        return `<svg class="icon" viewBox="0 0 16 16">
+          <path fill="currentColor" d="M8 4a.75.75 0 0 0-.75.75v6.69l-.72-.72a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l2-2a.75.75 0 1 0-1.06-1.06l-.72.72V11.44A.75.75 0 0 0 8 4Z"/>
+        </svg>`;
+      } else if (rankChange === 'new') {
+        return `<svg class="icon" viewBox="0 0 16 16">
+          <path fill="currentColor" d="M8 1.314C12.438-3.248 23.534 4.735 8.397 12.647.068.186.13.373.18.563.04.19-.09.38-.245-.49-.446-.052-.12-.068-.264-.034-.395l1.35-5.502c.163-.666.66-1.062 1.326-.898.666.163 1.062.66.898 1.326l-1.35 5.502c-.052.212-.046.432.034.632.106.274.383.47.713.518.263.046.528.013.754-.095.723-.354 1.332-1.32 1.417-2.055.142-1.112-.805-2.066-1.877-2.22-.97-.154-1.97.35-2.644 1.206-.533.99-.022 2.098.56 2.83.584.732 1.456.99 2.228 1.053.772.064 1.57-.15 2.26-.82.69-.67 1.456-1.66 1.692-2.54.13-.48.333-1.052.51-1.587.18-.534-.332-1.084-.47-1.643-.414-.746.064-1.46.366-2.056.92-.595.556-1.046 1.332-1.352 2.14-.306.81-.52 1.71-.463 2.656.026.47.088.946.233 1.394.145.448.33.868.563 1.27.232.404.467.88.597 1.38.394.5.186.92.297 1.405.32.486.024.97-.1 1.427-.37.458-.27-.865-.698-1.15-1.257-.283-.56-.404-1.19-.27-1.83.134-.638.448-1.18.95-1.533 1.65-.354.7-.47 1.553-.317 2.405.15.852.533 1.63 1.112 2.19.58.56 1.228.923 2.32 1.046 3.39.123.1.246.165.49.18.734.013.243-.083.48-.25.69-.166-.21-.237-.44-.194-.677.044-.236.146-.45.31-.627.48-.176.13-.356-.16-.543-.03-.186.047-.37.15-.543.314-.174.447-.233.956-.178 1.48.054.524.225.99.5 1.49.275.5.527.945.73 1.44.203.495.247.994.13 1.49-.117.494-.35.967-.694-1.405-.344-.438-.78-.674-1.28-.892-.5-.217-1.027-.31-1.576-.277-.55.033-1.096.164-1.586.59-.49.427-.87 1.023-1.115 1.775-.244.752-.257 1.554.11 2.283.367.73.943.872 1.61 1.046 2.39.175.78.277 1.55.098 2.28-.18.728-.462-1.42-.84-2.055-.38-.634-.748-1.24-1.095-1.82-.347-.58-.53-1.18-.566-1.808-.036-.626.097-1.23.394-1.8.296-.57.442-1.07.936-1.47 1.48-.4.543-.718 1.133-.908 1.77-.19.637-.273 1.31-.22 1.987.053.677.22 1.326.497 1.942.277.616.63 1.15.81 1.783.18.633.294 1.27.228 1.887-.066.616-.244 1.22-.53 1.77-.287.55-.592 1.06-.92 1.53-.327.47-.65.896-.97 1.418-.32.523-.586 1.074-.783 1.65-.198.576-.333 1.174-.406 1.788-.073.614-.07 1.24.082 1.834.152.595.39 1.13.688 1.613.298.484.59.91.863 1.33.263.42.55.784.818 1.25.264.466.496.947.682 1.446.186.5.29.97.405 1.495.114.525.223 1.03.417 1.506.194.476.45.91.773 1.414.323.504.578 1.023.765 1.546.187.523.442 1.023.7 1.503.256.48.513.98.7 1.497.186.517.44 1.023.7 1.524z"/>
+        </svg>`;
+      } else {
+        return `<svg class="icon" viewBox="0 0 16 16">
+          <path fill="currentColor" d="M3 8a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 3 8Zm10.25-.75a.75.75 0 0 1 0 1.5h.5a.75.75 0 0 1 0-1.5h-.5Z"/>
+        </svg>`;
+      }
+    }
+
+    // 获取排名变化文本
+    function getRankChangeText(repo) {
+      if (repo.rankChange === 'up') {
+        return `排名上升 ${Math.abs(repo.rankChangeValue)} 位 (昨日: #${repo.yesterdayPosition})`;
+      } else if (repo.rankChange === 'down') {
+        return `排名下降 ${Math.abs(repo.rankChangeValue)} 位 (昨日: #${repo.yesterdayPosition})`;
+      } else if (repo.rankChange === 'new') {
+        return '新上榜';
+      } else {
+        return '排名不变';
+      }
     }
   </script>
 </body>
