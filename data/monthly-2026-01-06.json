@@ -1,6 +1,6 @@
 {
   "date": "2026-01-06",
-  "timestamp": "2026-01-06T03:26:48.244Z",
+  "timestamp": "2026-01-06T01:04:19.812Z",
   "period": "monthly",
   "repositories": [
     {
@@ -10,13 +10,10 @@
       "fullName": "thedotmack/claude-mem",
       "description": "Claude Code插件，可自动捕获Claude在编码会话期间所做的一切，使用AI （使用Claude的agent-sdk ）对其进行压缩，并将相关上下文注入到未来的会话中。",
       "language": "TypeScript",
-      "stars": 10580,
-      "forks": 646,
+      "stars": 10516,
+      "forks": 641,
       "periodStars": 9824,
-      "url": "https://github.com/thedotmack/claude-mem",
-      "rankChange": "same",
-      "rankChangeValue": 0,
-      "yesterdayPosition": 1
+      "url": "https://github.com/thedotmack/claude-mem"
     },
     {
       "position": 2,
@@ -25,13 +22,10 @@
       "fullName": "DayuanJiang/next-ai-draw-io",
       "description": "Next.js Web应用程序，将AI功能与draw.io图集成在一起。此应用程序允许您通过自然语言命令和人工智能辅助可视化来创建、修改和增强图表。",
       "language": "TypeScript",
-      "stars": 16917,
-      "forks": 1740,
+      "stars": 16889,
+      "forks": 1736,
       "periodStars": 13207,
-      "url": "https://github.com/DayuanJiang/next-ai-draw-io",
-      "rankChange": "same",
-      "rankChangeValue": 0,
-      "yesterdayPosition": 2
+      "url": "https://github.com/DayuanJiang/next-ai-draw-io"
     },
     {
       "position": 3,
@@ -40,13 +34,10 @@
       "fullName": "microsoft/VibeVoice",
       "description": "开源前沿语音AI",
       "language": "Python",
-      "stars": 19815,
-      "forks": 2192,
+      "stars": 19764,
+      "forks": 2189,
       "periodStars": 9411,
-      "url": "https://github.com/microsoft/VibeVoice",
-      "rankChange": "same",
-      "rankChangeValue": 0,
-      "yesterdayPosition": 3
+      "url": "https://github.com/microsoft/VibeVoice"
     },
     {
       "position": 4,
@@ -55,13 +46,10 @@
       "fullName": "exo-explore/exo",
       "description": "使用日常设备在家中运行自己的人工智能集📱💻 🖥️群",
       "language": "Python",
-      "stars": 39494,
-      "forks": 2672,
+      "stars": 39490,
+      "forks": 2669,
       "periodStars": 6896,
-      "url": "https://github.com/exo-explore/exo",
-      "rankChange": "same",
-      "rankChangeValue": 0,
-      "yesterdayPosition": 4
+      "url": "https://github.com/exo-explore/exo"
     },
     {
       "position": 5,
@@ -70,13 +58,10 @@
       "fullName": "BloopAI/vibe-kanban",
       "description": "从Claude Code、Codex或任何编码代理中获得10倍的好处",
       "language": "Rust",
-      "stars": 13080,
-      "forks": 1213,
+      "stars": 13023,
+      "forks": 1209,
       "periodStars": 6667,
-      "url": "https://github.com/BloopAI/vibe-kanban",
-      "rankChange": "same",
-      "rankChangeValue": 0,
-      "yesterdayPosition": 5
+      "url": "https://github.com/BloopAI/vibe-kanban"
     },
     {
       "position": 6,
@@ -85,13 +70,10 @@
       "fullName": "anthropics/claude-code",
       "description": "Claude Code是一个代理编码工具，它位于您的终端中，了解您的代码库，并通过执行日常任务、解释复杂代码和处理git工作流程（所有这些都通过自然语言命令）来帮助您更快地进行编码。",
       "language": "Shell",
-      "stars": 51729,
-      "forks": 3717,
+      "stars": 51638,
+      "forks": 3709,
       "periodStars": 6883,
-      "url": "https://github.com/anthropics/claude-code",
-      "rankChange": "same",
-      "rankChangeValue": 0,
-      "yesterdayPosition": 6
+      "url": "https://github.com/anthropics/claude-code"
     },
     {
       "position": 7,
@@ -100,13 +82,10 @@
       "fullName": "anomalyco/opencode",
       "description": "开源编码代理。",
       "language": "TypeScript",
-      "stars": 50067,
-      "forks": 4243,
+      "stars": 49749,
+      "forks": 4222,
       "periodStars": 13401,
-      "url": "https://github.com/anomalyco/opencode",
-      "rankChange": "same",
-      "rankChangeValue": 0,
-      "yesterdayPosition": 7
+      "url": "https://github.com/anomalyco/opencode"
     },
     {
       "position": 8,
@@ -115,13 +94,10 @@
       "fullName": "resemble-ai/chatterbox",
       "description": "SoTA开源TTS",
       "language": "Python",
-      "stars": 20761,
-      "forks": 2694,
+      "stars": 20746,
+      "forks": 2690,
       "periodStars": 5896,
-      "url": "https://github.com/resemble-ai/chatterbox",
-      "rankChange": "same",
-      "rankChangeValue": 0,
-      "yesterdayPosition": 8
+      "url": "https://github.com/resemble-ai/chatterbox"
     },
     {
       "position": 9,
@@ -130,13 +106,10 @@
       "fullName": "Tencent/WeKnora",
       "description": "使用RAG范式的深度文档理解、语义检索和上下文感知答案的LLM支持框架。",
       "language": "Go",
-      "stars": 10947,
+      "stars": 10939,
       "forks": 1171,
       "periodStars": 3207,
-      "url": "https://github.com/Tencent/WeKnora",
-      "rankChange": "same",
-      "rankChangeValue": 0,
-      "yesterdayPosition": 9
+      "url": "https://github.com/Tencent/WeKnora"
     },
     {
       "position": 10,
@@ -145,13 +118,10 @@
       "fullName": "anthropics/skills",
       "description": "座席技能的公共存储库",
       "language": "Python",
-      "stars": 33882,
-      "forks": 3053,
+      "stars": 33746,
+      "forks": 3042,
       "periodStars": 14162,
-      "url": "https://github.com/anthropics/skills",
-      "rankChange": "same",
-      "rankChangeValue": 0,
-      "yesterdayPosition": 10
+      "url": "https://github.com/anthropics/skills"
     },
     {
       "position": 11,
@@ -160,13 +130,10 @@
       "fullName": "simstudioai/sim",
       "description": "构建和部署AI代理工作流的开源平台。",
       "language": "TypeScript",
-      "stars": 25020,
+      "stars": 25014,
       "forks": 3115,
       "periodStars": 6463,
-      "url": "https://github.com/simstudioai/sim",
-      "rankChange": "same",
-      "rankChangeValue": 0,
-      "yesterdayPosition": 11
+      "url": "https://github.com/simstudioai/sim"
     },
     {
       "position": 12,
@@ -175,13 +142,10 @@
       "fullName": "agentsmd/agents.md",
       "description": "AGENTS.md —用于指导编码代理的简单开放格式",
       "language": "TypeScript",
-      "stars": 14328,
-      "forks": 1008,
+      "stars": 14320,
+      "forks": 1006,
       "periodStars": 5521,
-      "url": "https://github.com/agentsmd/agents.md",
-      "rankChange": "same",
-      "rankChangeValue": 0,
-      "yesterdayPosition": 12
+      "url": "https://github.com/agentsmd/agents.md"
     },
     {
       "position": 13,
@@ -190,13 +154,10 @@
       "fullName": "datawhalechina/hello-agents",
       "description": "📚 《从零开始构建智能体》——从零开始的智能体原理与实践教程",
       "language": "Python",
-      "stars": 14510,
-      "forks": 1548,
+      "stars": 14452,
+      "forks": 1539,
       "periodStars": 8788,
-      "url": "https://github.com/datawhalechina/hello-agents",
-      "rankChange": "same",
-      "rankChangeValue": 0,
-      "yesterdayPosition": 13
+      "url": "https://github.com/datawhalechina/hello-agents"
     },
     {
       "position": 14,
@@ -205,13 +166,10 @@
       "fullName": "danielmiessler/Personal_AI_Infrastructure",
       "description": "用于升级人类的个人AI基础设施。",
       "language": "TypeScript",
-      "stars": 3600,
-      "forks": 615,
+      "stars": 3587,
+      "forks": 616,
       "periodStars": 2299,
-      "url": "https://github.com/danielmiessler/Personal_AI_Infrastructure",
-      "rankChange": "same",
-      "rankChangeValue": 0,
-      "yesterdayPosition": 14
+      "url": "https://github.com/danielmiessler/Personal_AI_Infrastructure"
     },
     {
       "position": 15,
@@ -220,13 +178,10 @@
       "fullName": "virattt/ai-hedge-fund",
       "description": "人工智能对冲基金团队",
       "language": "Python",
-      "stars": 44784,
-      "forks": 7878,
+      "stars": 44749,
+      "forks": 7873,
       "periodStars": 2203,
-      "url": "https://github.com/virattt/ai-hedge-fund",
-      "rankChange": "same",
-      "rankChangeValue": 0,
-      "yesterdayPosition": 15
+      "url": "https://github.com/virattt/ai-hedge-fund"
     },
     {
       "position": 16,
@@ -235,13 +190,10 @@
       "fullName": "NVIDIA/cutile-python",
       "description": "cuTile是为NVIDIA GPU编写并行内核的编程模型",
       "language": "Python",
-      "stars": 1774,
+      "stars": 1769,
       "forks": 92,
       "periodStars": 1567,
-      "url": "https://github.com/NVIDIA/cutile-python",
-      "rankChange": "same",
-      "rankChangeValue": 0,
-      "yesterdayPosition": 16
+      "url": "https://github.com/NVIDIA/cutile-python"
     }
   ]
 }

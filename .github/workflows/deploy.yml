@@ -1,10 +1,9 @@
 name: Deploy to GitHub Pages
 
-# 暂时禁用此工作流，与 fetch-trending.yml 冲突
-# on:
-#   push:
-#     branches: [ main ]
-#   workflow_dispatch:
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
 
 permissions:
   contents: write

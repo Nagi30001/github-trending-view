@@ -1,0 +1,11 @@
+# GitHub Pages 配置
+theme: null
+plugins: []
+exclude:
+  - README.md
+  - .github
+  - scripts
+  - data
+  - server.js
+  - package*.json
+  - node_modules
