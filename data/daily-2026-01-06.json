@@ -1,0 +1,127 @@
+{
+  "date": "2026-01-06",
+  "timestamp": "2026-01-06T01:04:08.472Z",
+  "period": "daily",
+  "repositories": [
+    {
+      "position": 1,
+      "author": "anomalyco",
+      "repoName": "opencode",
+      "fullName": "anomalyco/opencode",
+      "description": "开源编码代理。",
+      "language": "TypeScript",
+      "stars": 49749,
+      "forks": 4222,
+      "periodStars": 1852,
+      "url": "https://github.com/anomalyco/opencode"
+    },
+    {
+      "position": 2,
+      "author": "usememos",
+      "repoName": "memos",
+      "fullName": "usememos/memos",
+      "description": "开源、自托管的笔记记录服务。您的想法，您的数据，您的控制权—无需跟踪，无需广告，无需订阅费。",
+      "language": "Go",
+      "stars": 51894,
+      "forks": 3730,
+      "periodStars": 658,
+      "url": "https://github.com/usememos/memos"
+    },
+    {
+      "position": 3,
+      "author": "OpenBB-finance",
+      "repoName": "OpenBB",
+      "fullName": "OpenBB-finance/OpenBB",
+      "description": "面向分析师、量化分析师和人工智能代理商的金融数据平台。",
+      "language": "Python",
+      "stars": 57165,
+      "forks": 5545,
+      "periodStars": 388,
+      "url": "https://github.com/OpenBB-finance/OpenBB"
+    },
+    {
+      "position": 4,
+      "author": "ourongxing",
+      "repoName": "newsnow",
+      "fullName": "ourongxing/newsnow",
+      "description": "优雅地阅读实时和最热门的新闻",
+      "language": "TypeScript",
+      "stars": 16784,
+      "forks": 4832,
+      "periodStars": 211,
+      "url": "https://github.com/ourongxing/newsnow"
+    },
+    {
+      "position": 5,
+      "author": "virattt",
+      "repoName": "ai-hedge-fund",
+      "fullName": "virattt/ai-hedge-fund",
+      "description": "人工智能对冲基金团队",
+      "language": "Python",
+      "stars": 44749,
+      "forks": 7873,
+      "periodStars": 214,
+      "url": "https://github.com/virattt/ai-hedge-fund"
+    },
+    {
+      "position": 6,
+      "author": "python",
+      "repoName": "cpython",
+      "fullName": "python/cpython",
+      "description": "Python",
+      "language": "Python",
+      "stars": 70869,
+      "forks": 33831,
+      "periodStars": 171,
+      "url": "https://github.com/python/cpython"
+    },
+    {
+      "position": 7,
+      "author": "microsoft",
+      "repoName": "VibeVoice",
+      "fullName": "microsoft/VibeVoice",
+      "description": "开源前沿语音AI",
+      "language": "Python",
+      "stars": 19764,
+      "forks": 2189,
+      "periodStars": 144,
+      "url": "https://github.com/microsoft/VibeVoice"
+    },
+    {
+      "position": 8,
+      "author": "3b1b",
+      "repoName": "manim",
+      "fullName": "3b1b/manim",
+      "description": "解释性数学视频的动画引擎",
+      "language": "Python",
+      "stars": 83199,
+      "forks": 7036,
+      "periodStars": 84,
+      "url": "https://github.com/3b1b/manim"
+    },
+    {
+      "position": 9,
+      "author": "maplibre",
+      "repoName": "maplibre-gl-js",
+      "fullName": "maplibre/maplibre-gl-js",
+      "description": "MapLibre GL JS -浏览器中的交互式矢量图块地图",
+      "language": "TypeScript",
+      "stars": 9385,
+      "forks": 968,
+      "periodStars": 39,
+      "url": "https://github.com/maplibre/maplibre-gl-js"
+    },
+    {
+      "position": 10,
+      "author": "anthropics",
+      "repoName": "claude-code",
+      "fullName": "anthropics/claude-code",
+      "description": "Claude Code是一个代理编码工具，它位于您的终端中，了解您的代码库，并通过执行日常任务、解释复杂代码和处理git工作流程（所有这些都通过自然语言命令）来帮助您更快地进行编码。",
+      "language": "Shell",
+      "stars": 51638,
+      "forks": 3709,
+      "periodStars": 405,
+      "url": "https://github.com/anthropics/claude-code"
+    }
+  ]
+}
