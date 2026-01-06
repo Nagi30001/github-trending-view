@@ -1,14 +1,13 @@
 // 自动生成的数据文件 - 请勿手动编辑
-// 生成时间: 2026-01-06T03:35:41.462Z
+// 生成时间: 2026-01-06T05:49:22.481Z
 // 包含数据: 6 个文件
-// 配置: 保留最近 30 天、12 周、12 月的数据
+// 配置: 保留最近 30 天的数据
 
 window.GITHUB_TRENDING_DATA = {
   "daily": [
     {
-      "filename": "daily-2026-01-06.json",
-      "period": "daily",
       "date": "2026-01-06",
+      "period": "daily",
       "data": {
         "date": "2026-01-06",
         "timestamp": "2026-01-06T03:35:30.701Z",
@@ -169,9 +168,8 @@ window.GITHUB_TRENDING_DATA = {
       }
     },
     {
-      "filename": "daily-2026-01-05.json",
-      "period": "daily",
       "date": "2026-01-05",
+      "period": "daily",
       "data": {
         "date": "2026-01-05",
         "timestamp": "2026-01-05T16:21:40.026Z",
@@ -304,9 +302,8 @@ window.GITHUB_TRENDING_DATA = {
   ],
   "weekly": [
     {
-      "filename": "weekly-2026-01-06.json",
-      "period": "weekly",
       "date": "2026-01-06",
+      "period": "weekly",
       "data": {
         "date": "2026-01-06",
         "timestamp": "2026-01-06T03:35:34.826Z",
@@ -482,9 +479,8 @@ window.GITHUB_TRENDING_DATA = {
       }
     },
     {
-      "filename": "weekly-2026-01-05.json",
-      "period": "weekly",
       "date": "2026-01-05",
+      "period": "weekly",
       "data": {
         "date": "2026-01-05",
         "timestamp": "2026-01-05T16:21:50.463Z",
@@ -641,9 +637,8 @@ window.GITHUB_TRENDING_DATA = {
   ],
   "monthly": [
     {
-      "filename": "monthly-2026-01-06.json",
-      "period": "monthly",
       "date": "2026-01-06",
+      "period": "monthly",
       "data": {
         "date": "2026-01-06",
         "timestamp": "2026-01-06T03:35:41.410Z",
@@ -894,9 +889,8 @@ window.GITHUB_TRENDING_DATA = {
       }
     },
     {
-      "filename": "monthly-2026-01-05.json",
-      "period": "monthly",
       "date": "2026-01-05",
+      "period": "monthly",
       "data": {
         "date": "2026-01-05",
         "timestamp": "2026-01-05T16:22:03.034Z",
@@ -1100,8 +1094,8 @@ window.GITHUB_TRENDING_DATA = {
     }
   ],
   "meta": {
-    "generatedAt": "2026-01-06T03:35:41.459Z",
-    "totalFiles": 6,
+    "generatedAt": "2026-01-06T05:49:22.478Z",
+    "totalDates": 2,
     "config": {
       "maxDailyFiles": 30,
       "maxWeeklyFiles": 12,

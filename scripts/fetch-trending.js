@@ -206,7 +206,7 @@ function parseNumber(text) {
 }
 
 /**
- * 获取昨天的数据并计算排名变化
+ * 获取昨天的数据并计算排名变化（支持新的目录结构）
  * @param {string} period - 周期类型
  * @param {Array} currentData - 当前数据
  * @returns {Promise<Array>} 包含排名变化的数据
@@ -217,7 +217,8 @@ async function calculateRankChange(period, currentData) {
   yesterday.setDate(yesterday.getDate() - 1);
   const yesterdayStr = yesterday.toISOString().split('T')[0];
 
-  const yesterdayFile = path.join(dataDir, `${period}-${yesterdayStr}.json`);
+  // 新的文件路径：data/YYYY-MM-DD/period.json
+  const yesterdayFile = path.join(dataDir, yesterdayStr, `${period}.json`);
 
   try {
     const yesterdayData = JSON.parse(await fs.readFile(yesterdayFile, 'utf-8'));
@@ -271,16 +272,19 @@ async function calculateRankChange(period, currentData) {
 }
 
 /**
- * 保存数据到文件
+ * 保存数据到文件（新的目录结构：data/YYYY-MM-DD/period.json）
  */
 async function saveData(period, data) {
-  const dataDir = path.join(process.cwd(), 'data');
-  await fs.mkdir(dataDir, { recursive: true });
-
   const date = new Date().toISOString().split('T')[0];
   const timestamp = new Date().toISOString();
-  const fileName = `${period}-${date}.json`;
-  const filePath = path.join(dataDir, fileName);
+
+  // 新的目录结构：data/YYYY-MM-DD/
+  const dateDir = path.join(process.cwd(), 'data', date);
+  await fs.mkdir(dateDir, { recursive: true });
+
+  // 文件名：daily.json, weekly.json, monthly.json
+  const fileName = `${period}.json`;
+  const filePath = path.join(dateDir, fileName);
 
   const fileData = {
     date,
@@ -290,28 +294,36 @@ async function saveData(period, data) {
   };
 
   await fs.writeFile(filePath, JSON.stringify(fileData, null, 2));
-  console.log(`✅ 数据已保存到: ${fileName}`);
+  console.log(`✅ 数据已保存到: ${date}/${fileName}`);
 
   return filePath;
 }
 
 /**
- * 获取历史数据
+ * 获取历史数据（支持新的目录结构）
  */
 async function getHistory(period) {
   const dataDir = path.join(process.cwd(), 'data');
   try {
-    const files = await fs.readdir(dataDir);
-    const periodFiles = files
-      .filter(f => f.startsWith(`${period}-`) && f.endsWith('.json'))
+    const dates = await fs.readdir(dataDir);
+
+    // 过滤出日期格式的文件夹（YYYY-MM-DD）
+    const dateDirs = dates
+      .filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d))
       .sort()
       .reverse()
-      .slice(0, 30); // 最近30次
+      .slice(0, 30); // 最近30天
 
     const history = [];
-    for (const file of periodFiles) {
-      const content = JSON.parse(await fs.readFile(path.join(dataDir, file), 'utf-8'));
-      history.push(content);
+    for (const dateDir of dateDirs) {
+      try {
+        const filePath = path.join(dataDir, dateDir, `${period}.json`);
+        const content = JSON.parse(await fs.readFile(filePath, 'utf-8'));
+        history.push(content);
+      } catch (error) {
+        // 某个日期可能没有该周期的数据，跳过
+        continue;
+      }
     }
     return history;
   } catch (error) {

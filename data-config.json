@@ -1,8 +1,11 @@
 {
-  "lastUpdate": "2026-01-06T02:44:40.631Z",
-  "files": [],
+  "lastUpdate": "2026-01-06T05:49:22.482Z",
+  "dates": [
+    "2026-01-06",
+    "2026-01-05"
+  ],
   "config": {
-    "maxDailyFiles": 120,
+    "maxDailyFiles": 30,
     "maxWeeklyFiles": 12,
     "maxMonthlyFiles": 12,
     "enableLazyLoad": true

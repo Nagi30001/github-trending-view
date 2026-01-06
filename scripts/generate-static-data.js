@@ -29,68 +29,59 @@ async function saveDataConfig(config) {
 
 async function cleanupOldData() {
   try {
-    const files = await fs.readdir(DATA_DIR);
-    const jsonFiles = files.filter(f => f.endsWith('.json'));
+    // 读取所有日期文件夹
+    const dateDirs = await fs.readdir(DATA_DIR);
 
-    // 按类型分组
-    const dailyFiles = jsonFiles.filter(f => f.startsWith('daily-')).sort().reverse();
-    const weeklyFiles = jsonFiles.filter(f => f.startsWith('weekly-')).sort().reverse();
-    const monthlyFiles = jsonFiles.filter(f => f.startsWith('monthly-')).sort().reverse();
+    // 过滤出日期格式的文件夹（YYYY-MM-DD）
+    const validDateDirs = dateDirs
+      .filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d))
+      .sort()
+      .reverse();
 
-    // 删除超出限制的旧文件
-    const deleteFile = async (file) => {
+    // 删除超出限制的旧日期文件夹
+    const deleteDateDir = async (dateDir) => {
       try {
-        await fs.unlink(path.join(DATA_DIR, file));
-        console.log(`🗑️  删除旧文件: ${file}`);
+        const dirPath = path.join(DATA_DIR, dateDir);
+        await fs.rm(dirPath, { recursive: true, force: true });
+        console.log(`🗑️  删除旧日期文件夹: ${dateDir}`);
       } catch (error) {
-        console.warn(`⚠️  无法删除 ${file}:`, error.message);
+        console.warn(`⚠️  无法删除 ${dateDir}:`, error.message);
       }
     };
 
-    // 清理每日数据（保留最近 N 天）
-    if (dailyFiles.length > CONFIG.maxDailyFiles) {
-      const toDelete = dailyFiles.slice(CONFIG.maxDailyFiles);
-      await Promise.all(toDelete.map(deleteFile));
-    }
+    // 保留最近 N 个日期
+    const keepDates = validDateDirs.slice(0, CONFIG.maxDailyFiles);
+    const deleteDates = validDateDirs.slice(CONFIG.maxDailyFiles);
 
-    // 清理每周数据
-    if (weeklyFiles.length > CONFIG.maxWeeklyFiles) {
-      const toDelete = weeklyFiles.slice(CONFIG.maxWeeklyFiles);
-      await Promise.all(toDelete.map(deleteFile));
-    }
-
-    // 清理每月数据
-    if (monthlyFiles.length > CONFIG.maxMonthlyFiles) {
-      const toDelete = monthlyFiles.slice(CONFIG.maxMonthlyFiles);
-      await Promise.all(toDelete.map(deleteFile));
+    if (deleteDates.length > 0) {
+      await Promise.all(deleteDates.map(deleteDateDir));
     }
 
     return {
-      daily: dailyFiles.slice(0, CONFIG.maxDailyFiles),
-      weekly: weeklyFiles.slice(0, CONFIG.maxWeeklyFiles),
-      monthly: monthlyFiles.slice(0, CONFIG.maxMonthlyFiles),
+      dates: keepDates,
     };
   } catch (error) {
     console.error('❌ 清理旧数据失败:', error);
-    return { daily: [], weekly: [], monthly: [] };
+    return { dates: [] };
   }
 }
 
 async function generateStaticData() {
   try {
-    const files = await fs.readdir(DATA_DIR);
-    const jsonFiles = files.filter(f => f.endsWith('.json'));
+    // 检查是否有日期文件夹
+    const dateDirs = await fs.readdir(DATA_DIR);
+    const validDateDirs = dateDirs.filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d));
 
-    if (jsonFiles.length === 0) {
+    if (validDateDirs.length === 0) {
       console.log('⚠️  未找到数据文件，请先运行 npm run fetch');
       return;
     }
 
     console.log(`\n📊 开始生成静态数据...`);
-    console.log(`   找到 ${jsonFiles.length} 个数据文件`);
+    console.log(`   找到 ${validDateDirs.length} 个日期文件夹`);
 
-    // 清理旧数据
-    const { daily: dailyFiles, weekly: weeklyFiles, monthly: monthlyFiles } = await cleanupOldData();
+    // 清理旧数据，保留最近的日期
+    const { dates } = await cleanupOldData();
 
     const data = {
       daily: [],
@@ -98,64 +89,83 @@ async function generateStaticData() {
       monthly: [],
       meta: {
         generatedAt: new Date().toISOString(),
-        totalFiles: jsonFiles.length,
+        totalDates: dates.length,
         config: CONFIG
       }
     };
 
-    // 读取并处理数据文件
-    const processFile = async (file) => {
-      const parts = file.replace('.json', '').split('-');
-      const period = parts[0];
-      const date = parts.slice(1).join('-');
+    // 处理每个日期文件夹
+    for (const date of dates) {
+      try {
+        const dateDirPath = path.join(DATA_DIR, date);
 
-      const filePath = path.join(DATA_DIR, file);
-      const content = JSON.parse(await fs.readFile(filePath, 'utf-8'));
+        // 检查是否存在 daily.json
+        try {
+          const dailyPath = path.join(dateDirPath, 'daily.json');
+          const content = JSON.parse(await fs.readFile(dailyPath, 'utf-8'));
+          const { repositories, ...restData } = content;
 
-      // 只保存元数据和前 10 个项目（减小文件大小）
-      const { repositories, ...restData } = content;
-
-      return {
-        filename: file,
-        period,
-        date,
-        data: {
-          ...restData,
-          repositories: repositories.slice(0, 25), // 只保存前 25 个
-          totalCount: repositories.length
+          data.daily.push({
+            date,
+            period: 'daily',
+            data: {
+              ...restData,
+              repositories: repositories.slice(0, 25),
+              totalCount: repositories.length
+            }
+          });
+        } catch (error) {
+          // 该日期没有 daily 数据
         }
-      };
-    };
 
-    // 处理每日数据
-    console.log('\n📅 处理每日数据...');
-    for (const file of dailyFiles) {
-      const item = await processFile(file);
-      data.daily.push(item);
-      console.log(`   ✓ ${file}`);
-    }
+        // 检查是否存在 weekly.json
+        try {
+          const weeklyPath = path.join(dateDirPath, 'weekly.json');
+          const content = JSON.parse(await fs.readFile(weeklyPath, 'utf-8'));
+          const { repositories, ...restData } = content;
 
-    // 处理每周数据
-    console.log('\n📆 处理每周数据...');
-    for (const file of weeklyFiles) {
-      const item = await processFile(file);
-      data.weekly.push(item);
-      console.log(`   ✓ ${file}`);
-    }
+          data.weekly.push({
+            date,
+            period: 'weekly',
+            data: {
+              ...restData,
+              repositories: repositories.slice(0, 25),
+              totalCount: repositories.length
+            }
+          });
+        } catch (error) {
+          // 该日期没有 weekly 数据
+        }
 
-    // 处理每月数据
-    console.log('\n🗓️  处理每月数据...');
-    for (const file of monthlyFiles) {
-      const item = await processFile(file);
-      data.monthly.push(item);
-      console.log(`   ✓ ${file}`);
+        // 检查是否存在 monthly.json
+        try {
+          const monthlyPath = path.join(dateDirPath, 'monthly.json');
+          const content = JSON.parse(await fs.readFile(monthlyPath, 'utf-8'));
+          const { repositories, ...restData } = content;
+
+          data.monthly.push({
+            date,
+            period: 'monthly',
+            data: {
+              ...restData,
+              repositories: repositories.slice(0, 25),
+              totalCount: repositories.length
+            }
+          });
+        } catch (error) {
+          // 该日期没有 monthly 数据
+        }
+
+      } catch (error) {
+        console.warn(`   ⚠️  处理日期 ${date} 失败:`, error.message);
+      }
     }
 
     // 生成 JS 文件
     const jsContent = `// 自动生成的数据文件 - 请勿手动编辑
 // 生成时间: ${new Date().toISOString()}
 // 包含数据: ${data.daily.length + data.weekly.length + data.monthly.length} 个文件
-// 配置: 保留最近 ${CONFIG.maxDailyFiles} 天、${CONFIG.maxWeeklyFiles} 周、${CONFIG.maxMonthlyFiles} 月的数据
+// 配置: 保留最近 ${CONFIG.maxDailyFiles} 天的数据
 
 window.GITHUB_TRENDING_DATA = ${JSON.stringify(data, null, 2)};
 `;
@@ -178,7 +188,7 @@ window.GITHUB_TRENDING_DATA = ${JSON.stringify(data, null, 2)};
     // 保存配置
     await saveDataConfig({
       lastUpdate: new Date().toISOString(),
-      files: jsonFiles,
+      dates: dates,
       config: CONFIG
     });
 

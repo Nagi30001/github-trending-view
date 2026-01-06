@@ -1087,9 +1087,9 @@
           // 静态模式：使用预加载数据
           const data = window.GITHUB_TRENDING_DATA;
           availableDates = {
-            daily: data.daily.map(item => ({ filename: item.filename, period: item.period, date: item.date })),
-            weekly: data.weekly.map(item => ({ filename: item.filename, period: item.period, date: item.date })),
-            monthly: data.monthly.map(item => ({ filename: item.filename, period: item.period, date: item.date }))
+            daily: data.daily.map(item => ({ period: item.period, date: item.date })),
+            weekly: data.weekly.map(item => ({ period: item.period, date: item.date })),
+            monthly: data.monthly.map(item => ({ period: item.period, date: item.date }))
           };
         } else {
           // 动态模式：从 API 获取
