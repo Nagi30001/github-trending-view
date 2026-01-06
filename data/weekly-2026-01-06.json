@@ -1,6 +1,6 @@
 {
   "date": "2026-01-06",
-  "timestamp": "2026-01-06T01:04:13.238Z",
+  "timestamp": "2026-01-06T03:35:34.826Z",
   "period": "weekly",
   "repositories": [
     {
@@ -10,10 +10,13 @@
       "fullName": "BloopAI/vibe-kanban",
       "description": "从Claude Code、Codex或任何编码代理中获得10倍的好处",
       "language": "Rust",
-      "stars": 13023,
-      "forks": 1209,
+      "stars": 13084,
+      "forks": 1213,
       "periodStars": 5066,
-      "url": "https://github.com/BloopAI/vibe-kanban"
+      "url": "https://github.com/BloopAI/vibe-kanban",
+      "rankChange": "same",
+      "rankChangeValue": 0,
+      "yesterdayPosition": 1
     },
     {
       "position": 2,
@@ -22,10 +25,13 @@
       "fullName": "usememos/memos",
       "description": "开源、自托管的笔记记录服务。您的想法，您的数据，您的控制权—无需跟踪，无需广告，无需订阅费。",
       "language": "Go",
-      "stars": 51894,
-      "forks": 3730,
+      "stars": 51974,
+      "forks": 3738,
       "periodStars": 4153,
-      "url": "https://github.com/usememos/memos"
+      "url": "https://github.com/usememos/memos",
+      "rankChange": "same",
+      "rankChangeValue": 0,
+      "yesterdayPosition": 2
     },
     {
       "position": 3,
@@ -34,10 +40,13 @@
       "fullName": "harvard-edge/cs249r_book",
       "description": "浅谈机器学习",
       "language": "JavaScript",
-      "stars": 15942,
-      "forks": 1828,
+      "stars": 16007,
+      "forks": 1831,
       "periodStars": 3861,
-      "url": "https://github.com/harvard-edge/cs249r_book"
+      "url": "https://github.com/harvard-edge/cs249r_book",
+      "rankChange": "up",
+      "rankChangeValue": 1,
+      "yesterdayPosition": 4
     },
     {
       "position": 4,
@@ -46,10 +55,13 @@
       "fullName": "afkarxyz/SpotiFLAC",
       "description": "从Tidal、Qobuz和Amazon Music获取真正的FLAC中的Spotify曲目—无需帐户。",
       "language": "TypeScript",
-      "stars": 2386,
-      "forks": 133,
+      "stars": 2395,
+      "forks": 134,
       "periodStars": 1590,
-      "url": "https://github.com/afkarxyz/SpotiFLAC"
+      "url": "https://github.com/afkarxyz/SpotiFLAC",
+      "rankChange": "up",
+      "rankChangeValue": 1,
+      "yesterdayPosition": 5
     },
     {
       "position": 5,
@@ -58,10 +70,13 @@
       "fullName": "ourongxing/newsnow",
       "description": "优雅地阅读实时和最热门的新闻",
       "language": "TypeScript",
-      "stars": 16784,
-      "forks": 4832,
+      "stars": 16827,
+      "forks": 4842,
       "periodStars": 1136,
-      "url": "https://github.com/ourongxing/newsnow"
+      "url": "https://github.com/ourongxing/newsnow",
+      "rankChange": "up",
+      "rankChangeValue": 1,
+      "yesterdayPosition": 6
     },
     {
       "position": 6,
@@ -70,10 +85,13 @@
       "fullName": "resemble-ai/chatterbox",
       "description": "SoTA开源TTS",
       "language": "Python",
-      "stars": 20746,
-      "forks": 2690,
+      "stars": 20763,
+      "forks": 2694,
       "periodStars": 1859,
-      "url": "https://github.com/resemble-ai/chatterbox"
+      "url": "https://github.com/resemble-ai/chatterbox",
+      "rankChange": "up",
+      "rankChangeValue": 1,
+      "yesterdayPosition": 7
     },
     {
       "position": 7,
@@ -82,10 +100,13 @@
       "fullName": "danielmiessler/Personal_AI_Infrastructure",
       "description": "用于升级人类的个人AI基础设施。",
       "language": "TypeScript",
-      "stars": 3587,
+      "stars": 3601,
       "forks": 616,
       "periodStars": 989,
-      "url": "https://github.com/danielmiessler/Personal_AI_Infrastructure"
+      "url": "https://github.com/danielmiessler/Personal_AI_Infrastructure",
+      "rankChange": "up",
+      "rankChangeValue": 1,
+      "yesterdayPosition": 8
     },
     {
       "position": 8,
@@ -94,10 +115,13 @@
       "fullName": "alexta69/metube",
       "description": "自托管YouTube下载器（ youtube-dl/yt-dlp的网络用户界面）",
       "language": "Python",
-      "stars": 12058,
-      "forks": 824,
+      "stars": 12065,
+      "forks": 827,
       "periodStars": 753,
-      "url": "https://github.com/alexta69/metube"
+      "url": "https://github.com/alexta69/metube",
+      "rankChange": "up",
+      "rankChangeValue": 1,
+      "yesterdayPosition": 9
     },
     {
       "position": 9,
@@ -106,10 +130,13 @@
       "fullName": "nocodb/nocodb",
       "description": "🔥 🔥 🔥 开源Airtable替代方案",
       "language": "TypeScript",
-      "stars": 60924,
-      "forks": 4521,
+      "stars": 60948,
+      "forks": 4525,
       "periodStars": 1517,
-      "url": "https://github.com/nocodb/nocodb"
+      "url": "https://github.com/nocodb/nocodb",
+      "rankChange": "up",
+      "rankChangeValue": 1,
+      "yesterdayPosition": 10
     },
     {
       "position": 10,
@@ -118,10 +145,13 @@
       "fullName": "OpenBB-finance/OpenBB",
       "description": "面向分析师、量化分析师和人工智能代理商的金融数据平台。",
       "language": "Python",
-      "stars": 57165,
-      "forks": 5545,
+      "stars": 57212,
+      "forks": 5546,
       "periodStars": 1166,
-      "url": "https://github.com/OpenBB-finance/OpenBB"
+      "url": "https://github.com/OpenBB-finance/OpenBB",
+      "rankChange": "up",
+      "rankChangeValue": 1,
+      "yesterdayPosition": 11
     },
     {
       "position": 11,
@@ -130,10 +160,13 @@
       "fullName": "anomalyco/opencode",
       "description": "开源编码代理。",
       "language": "TypeScript",
-      "stars": 49749,
-      "forks": 4222,
+      "stars": 50087,
+      "forks": 4245,
       "periodStars": 5430,
-      "url": "https://github.com/anomalyco/opencode"
+      "url": "https://github.com/anomalyco/opencode",
+      "rankChange": "up",
+      "rankChangeValue": 1,
+      "yesterdayPosition": 12
     }
   ]
 }
