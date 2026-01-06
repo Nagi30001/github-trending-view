@@ -5,12 +5,6 @@ on:
     # 每天 UTC 0:00, 8:00, 16:00 运行（北京时间 8:00, 16:00, 0:00）
     - cron: '0 */8 * * *'
   workflow_dispatch: # 允许手动触发
-  push:
-    branches: [ main ]
-    paths:
-      - 'scripts/**'
-      - 'package.json'
-      - '.github/workflows/fetch-trending.yml'
 
 permissions:
   contents: write
