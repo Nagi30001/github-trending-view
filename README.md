@@ -5,11 +5,13 @@
 ## ✨ 特性
 
 - 📊 **自动数据收集**：每天、每周、每月自动收集 GitHub Trending 数据
+- 📈 **排名变化追踪**：对比昨日排名，显示上升/下降/新上榜状态
 - 💰 **零成本存储**：使用 GitHub 仓库免费存储数据
-- 🔄 **自动化运行**：通过 GitHub Actions 定时自动收集，无需服务器
-- 🎨 **美观可视化**：现代化界面展示趋势数据
-- 📈 **趋势分析**：支持查看不同时间维度的热门项目
-- 🌐 **简单部署**：可部署到 GitHub Pages 或任何静态托管平台
+- 🔄 **完全自动化**：通过 GitHub Actions 定时自动收集和部署，无需服务器
+- 🌐 **自动翻译**：项目描述自动翻译为中文
+- 🎨 **美观可视化**：现代化界面、玻璃态设计、橙色主题
+- 📱 **响应式设计**：完美适配桌面和移动设备
+- 🚀 **即时部署**：数据更新后自动部署到 GitHub Pages
 
 ## 🏗️ 项目架构
 
@@ -53,24 +55,43 @@ npm run serve
 
 ## ⚙️ 配置 GitHub Actions 自动收集
 
-### 推送到 GitHub
+### 工作流说明
 
-1. 将代码推送到你的 GitHub 仓库
-2. 在 GitHub 仓库页面启用 Actions
+项目包含两个自动化工作流：
 
-### 自动收集设置
+1. **Fetch GitHub Trending and Deploy** (自动运行)
+   - 定时抓取数据并自动部署到 GitHub Pages
+   - 每 8 小时运行一次（UTC 0:00, 8:00, 16:00 → 北京时间 8:00, 16:00, 0:00）
+   - 支持手动触发
+   - 当脚本文件有更新时也会触发
 
-GitHub Actions 默认配置：
-- **运行频率**：每 8 小时一次（UTC 0:00, 8:00, 16:00）
-- **手动触发**：支持在 Actions 页面手动运行
+2. **Manual Deploy** (仅手动触发)
+   - 紧急手动部署时使用
+   - 需要在 GitHub Actions 页面手动运行
 
-修改运行频率，编辑 `.github/workflows/fetch-trending.yml` 中的 cron 表达式：
+### 自动化流程
+
+```
+定时触发 → 抓取数据 → 生成静态文件 → 提交到 main → 部署到 gh-pages → GitHub Pages 更新
+```
+
+**关键特性：**
+- ✅ 自动抓取最新数据
+- ✅ 自动计算排名变化（与昨日对比）
+- ✅ 自动翻译描述为中文
+- ✅ 自动部署到 GitHub Pages
+- ✅ 无需手动干预
+
+### 修改运行频率
+
+编辑 `.github/workflows/fetch-trending.yml` 中的 cron 表达式：
 
 ```yaml
 schedule:
   - cron: '0 */8 * * *'  # 每 8 小时
   # 每天一次: '0 0 * * *'
   # 每 6 小时: '0 */6 * * *'
+  # 每小时: '0 * * * *'
 ```
 
 ## 📊 数据格式
@@ -126,9 +147,9 @@ GET /api/trending/:period/compare
 
 ## 🌐 部署到 GitHub Pages
 
-### 方式 1：使用 GitHub Actions 自动部署（推荐）
+### 快速部署（推荐）
 
-项目已配置好 GitHub Actions 工作流，推送到 GitHub 后会自动部署到 GitHub Pages。
+项目已配置好完整的自动化部署流程，只需几步即可上线：
 
 **配置步骤：**
 
@@ -142,66 +163,60 @@ GET /api/trending/:period/compare
 2. **启用 GitHub Pages**
    - 进入仓库的 **Settings**（设置）
    - 左侧菜单找到 **Pages**
-   - **Source** 选择 **GitHub Actions**
+   - **Source** 选择 **Deploy from a branch**
+   - **Branch** 选择 **gh-pages** 和 **/ (root)**
+   - 点击 **Save**
 
-3. **等待部署完成**
-   - 进入 **Actions** 标签页
-   - 查看 "Deploy to GitHub Pages" 工作流
-   - 等待工作流运行完成（约 1-2 分钟）
+3. **首次手动部署**（可选）
+   ```bash
+   npm run deploy:full
+   ```
+   或者在 GitHub Actions 页面手动触发 "Manual Deploy" 工作流
 
 4. **访问你的网站**
    ```
-   https://你的用户名.github.io/仓库名/
+   https://nagi30001.github.io/github-trending-view/
    ```
 
-**工作原理：**
-- 每次推送代码到 main 分支时自动触发部署
-- 自动抓取最新的 GitHub Trending 数据
-- 生成静态数据文件 `public/data.js`
-- 将 `public/` 目录部署到 GitHub Pages
+### 自动化工作原理
 
-### 方式 2：手动构建和部署
+```
+GitHub Actions 定时触发 (每8小时)
+    ↓
+1. 抓取 GitHub Trending 数据
+2. 计算排名变化（对比昨日）
+3. 翻译描述为中文
+4. 生成静态数据文件
+5. 提交数据到 main 分支
+6. 部署 public/ 到 gh-pages 分支
+7. GitHub Pages 自动更新
+```
 
-如果你想手动控制部署时机：
+**特性：**
+- ✅ 完全自动，无需手动干预
+- ✅ 每 8 小时自动更新数据
+- ✅ 自动部署，网站内容始终最新
+- ✅ 支持手动触发紧急更新
+- ✅ 排名变化可视化
 
-1. **构建静态数据**
-   ```bash
-   # 安装依赖
-   npm install
-
-   # 抓取数据并生成静态文件
-   npm run build
-
-   # 这会执行：
-   # 1. npm run fetch      # 抓取 trending 数据
-   # 2. npm run build:data # 生成 public/data.js
-   ```
-
-2. **推送并触发部署**
-   ```bash
-   git add public/data.js
-   git commit -m "Update data"
-   git push
-   ```
-
-### 方式 3：本地/服务器运行（带 API）
-
-如果需要实时更新数据（不使用静态模式）：
+### 本地开发
 
 ```bash
-# 启动 Express 服务器
-npm run serve
+# 启动本地服务器（支持实时 API）
+npm run dev
 
 # 访问 http://localhost:3000
 ```
 
-**注意：** 这种方式需要持续运行服务器，适合本地开发或 VPS 部署。
+### 手动部署命令
 
-### 部署到其他平台
+```bash
+# 只部署（不重新抓取数据）
+npm run deploy
 
-**Vercel/Netlify：**
-- 可以使用静态模式（方案 1/2）
-- 如果需要 API，需要配置 Serverless Functions
+# 完整部署（抓取数据 + 部署）
+npm run deploy:full
+```
 
 ## 📝 使用场景
 
