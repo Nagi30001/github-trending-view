@@ -46,6 +46,7 @@ jobs:
       - name: Trigger static workflow
         if: success()
         run: |
-          gh repo dispatch --event-type deploy_static
+          gh api -X POST /repos/${{ github.repository }}/dispatches \
+            -f event_type=deploy_static
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
