@@ -46,6 +46,6 @@ jobs:
       - name: Trigger static workflow
         if: success()
         run: |
-          gh workflow run static.yml
+          gh repo dispatch --event-type deploy_static
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
