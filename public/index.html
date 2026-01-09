@@ -1307,12 +1307,13 @@
       } else if (rankChange === 'down') {
         // 下降箭头 - 红色
         return `<svg class="icon" viewBox="0 0 16 16">
-          <path fill="currentColor" d="M8 4a.75.75 0 0 0-.75.75v6.69l-.72-.72a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l2-2a.75.75 0 1 0-1.06-1.06l-.72.72v6.69A.75.75 0 0 0 8 4Z"/>
+          <path fill="currentColor" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zM8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
         </svg>`;
       } else if (rankChange === 'new') {
-        // 新星图标
-        return `<svg class="icon" viewBox="0 0 16 16">
-          <path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/>
+        // NEW 徽章
+        return `<svg class="icon" viewBox="0 0 16 16" style="font-weight: bold;">
+          <rect x="1" y="4" width="14" height="8" rx="2" fill="currentColor"/>
+          <text x="8" y="10" text-anchor="middle" fill="white" font-size="5" font-weight="bold" font-family="sans-serif">NEW</text>
         </svg>`;
       } else {
         // 横线 - 表示不变
