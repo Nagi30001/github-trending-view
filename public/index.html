@@ -241,6 +241,40 @@
       filter: invert(0);
     }
 
+    .date-nav-btn {
+      padding: 10px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+    }
+
+    .date-nav-btn:hover {
+      background: rgba(249, 115, 22, 0.1);
+      border-color: var(--accent-orange);
+      color: var(--accent-orange);
+    }
+
+    .date-nav-btn:active {
+      transform: scale(0.95);
+    }
+
+    .date-nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .date-nav-btn:disabled:hover {
+      background: var(--bg-secondary);
+      border-color: var(--glass-border);
+      color: var(--text-secondary);
+    }
+
     .refresh-btn {
       padding: 12px 28px;
       background: var(--gradient-1);
@@ -919,7 +953,19 @@
         </div>
         <div class="date-selector">
           <label for="date-select">选择日期：</label>
+          <button class="date-nav-btn" id="prev-date" title="前一天">
+            <svg class="icon" viewBox="0 0 16 16">
+              <path fill="currentColor" d="M10 12a.75.75 0 0 1-.75-.75V4.56l-.72.72a.75.75 0 0 1-1.06-1.06l2-2a.75.75 0 0 1 1.06 0l2 2a.75.75 0 1 1-1.06 1.06l-.72-.72v6.69A.75.75 0 0 1 10 12Z"/>
+              <path fill="currentColor" d="M4.5 8a.75.75 0 0 1 .75-.75h8.5a.75.75 0 0 1 0 1.5h-8.5A.75.75 0 0 1 4.5 8Z"/>
+            </svg>
+          </button>
           <input type="date" id="date-select" class="date-input">
+          <button class="date-nav-btn" id="next-date" title="后一天">
+            <svg class="icon" viewBox="0 0 16 16">
+              <path fill="currentColor" d="M6 12a.75.75 0 0 0 .75-.75V4.56l.72.72a.75.75 0 0 0 1.06-1.06l-2-2a.75.75 0 0 0-1.06 0l-2 2a.75.75 0 1 0 1.06 1.06l.72-.72v6.69A.75.75 0 0 0 6 12Z"/>
+              <path fill="currentColor" d="M11.5 8a.75.75 0 0 0-.75-.75h-8.5a.75.75 0 0 0 0 1.5h8.5A.75.75 0 0 0 11.5 8Z"/>
+            </svg>
+          </button>
         </div>
         <button class="refresh-btn" onclick="loadData()">
           <svg class="icon icon-lg" viewBox="0 0 16 16">
@@ -1071,8 +1117,18 @@
         });
       });
 
+      // 日期导航按钮
+      document.getElementById('prev-date').addEventListener('click', () => {
+        navigateDate(-1);
+      });
+
+      document.getElementById('next-date').addEventListener('click', () => {
+        navigateDate(1);
+      });
+
       // 日期选择
       document.getElementById('date-select').addEventListener('change', () => {
+        updateNavButtons();
         loadData();
       });
 
@@ -1100,6 +1156,7 @@
         }
 
         updateDateOptions();
+        updateNavButtons();
         await loadData();
       } catch (error) {
         console.error('Init error:', error);
@@ -1119,13 +1176,51 @@
 
       dateSelect.disabled = false;
 
-      // 获取最新日期
+      const currentDate = dateSelect.value;
       const latestDate = dates[0].date;
+      const earliestDate = dates[dates.length - 1].date;
 
-      // 设置可选日期范围
-      dateSelect.min = dates[dates.length - 1].date;
+      dateSelect.min = earliestDate;
       dateSelect.max = latestDate;
-      dateSelect.value = latestDate;
+
+      if (currentDate && dates.some(d => d.date === currentDate)) {
+        dateSelect.value = currentDate;
+      } else {
+        dateSelect.value = latestDate;
+      }
+
+      updateNavButtons();
+    }
+
+    // 更新导航按钮状态
+    function updateNavButtons() {
+      const dateSelect = document.getElementById('date-select');
+      const prevBtn = document.getElementById('prev-date');
+      const nextBtn = document.getElementById('next-date');
+
+      prevBtn.disabled = dateSelect.value <= dateSelect.min;
+      nextBtn.disabled = dateSelect.value >= dateSelect.max;
+    }
+
+    // 日期导航
+    function navigateDate(direction) {
+      const dateSelect = document.getElementById('date-select');
+      const currentDate = new Date(dateSelect.value);
+      const newDate = new Date(currentDate);
+      newDate.setDate(newDate.getDate() + direction);
+
+      const minDate = dateSelect.min;
+      const maxDate = dateSelect.max;
+
+      if (direction === -1 && newDate >= new Date(minDate)) {
+        dateSelect.value = newDate.toISOString().split('T')[0];
+        updateNavButtons();
+        loadData();
+      } else if (direction === 1 && newDate <= new Date(maxDate)) {
+        dateSelect.value = newDate.toISOString().split('T')[0];
+        updateNavButtons();
+        loadData();
+      }
     }
 
     // 加载数据
@@ -1191,6 +1286,9 @@
 
         // 渲染图表
         renderChart(languageStats);
+
+        // 更新导航按钮状态
+        updateNavButtons();
 
       } catch (error) {
         console.error('Error:', error);
