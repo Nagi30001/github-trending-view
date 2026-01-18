@@ -1,0 +1,82 @@
+{
+  "date": "2026-01-18",
+  "timestamp": "2026-01-18T01:09:43.325Z",
+  "period": "daily",
+  "repositories": [
+    {
+      "position": 1,
+      "author": "eigent-ai",
+      "repoName": "eigent",
+      "fullName": "eigent-ai/eigent",
+      "description": "Eigent ：开源Cowork桌面，解锁卓越的生产力。",
+      "language": "TypeScript",
+      "stars": 8640,
+      "forks": 912,
+      "periodStars": 760,
+      "url": "https://github.com/eigent-ai/eigent",
+      "rankChange": "same",
+      "rankChangeValue": 0,
+      "yesterdayPosition": 1
+    },
+    {
+      "position": 2,
+      "author": "obra",
+      "repoName": "superpowers",
+      "fullName": "obra/superpowers",
+      "description": "有效的代理技能框架和软件开发方法。",
+      "language": "Shell",
+      "stars": 27399,
+      "forks": 2033,
+      "periodStars": 1422,
+      "url": "https://github.com/obra/superpowers",
+      "rankChange": "same",
+      "rankChangeValue": 0,
+      "yesterdayPosition": 2
+    },
+    {
+      "position": 3,
+      "author": "puckeditor",
+      "repoName": "puck",
+      "fullName": "puckeditor/puck",
+      "description": "React with AI超能力的可视化编辑器",
+      "language": "TypeScript",
+      "stars": 11390,
+      "forks": 784,
+      "periodStars": 336,
+      "url": "https://github.com/puckeditor/puck",
+      "rankChange": "up",
+      "rankChangeValue": 1,
+      "yesterdayPosition": 4
+    },
+    {
+      "position": 4,
+      "author": "google",
+      "repoName": "langextract",
+      "fullName": "google/langextract",
+      "description": "Python库，用于使用具有精确源接地和交互式可视化的LLM从非结构化文本中提取结构化信息。",
+      "language": "Python",
+      "stars": 21595,
+      "forks": 1499,
+      "periodStars": 425,
+      "url": "https://github.com/google/langextract",
+      "rankChange": "up",
+      "rankChangeValue": 1,
+      "yesterdayPosition": 5
+    },
+    {
+      "position": 5,
+      "author": "iOfficeAI",
+      "repoName": "AionUi",
+      "fullName": "iOfficeAI/AionUi",
+      "description": "免费、本地、开源的Cowork ，适用于Gemini CLI、Claude Code、Codex、Opencode、Qwen Code、Goose Cli、Auggie等| 🌟 Star ，如果您喜欢！",
+      "language": "TypeScript",
+      "stars": 4909,
+      "forks": 388,
+      "periodStars": 605,
+      "url": "https://github.com/iOfficeAI/AionUi",
+      "rankChange": "up",
+      "rankChangeValue": 1,
+      "yesterdayPosition": 6
+    }
+  ]
+}
