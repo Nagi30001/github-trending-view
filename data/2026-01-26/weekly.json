@@ -1,0 +1,82 @@
+{
+  "date": "2026-01-26",
+  "timestamp": "2026-01-26T01:10:22.509Z",
+  "period": "weekly",
+  "repositories": [
+    {
+      "position": 1,
+      "author": "remotion-dev",
+      "repoName": "remotion",
+      "fullName": "remotion-dev/remotion",
+      "description": "🎥 使用React以编程方式制作视频",
+      "language": "TypeScript",
+      "stars": 30628,
+      "forks": 1854,
+      "periodStars": 4795,
+      "url": "https://github.com/remotion-dev/remotion",
+      "rankChange": "same",
+      "rankChangeValue": 0,
+      "yesterdayPosition": 1
+    },
+    {
+      "position": 2,
+      "author": "iOfficeAI",
+      "repoName": "AionUi",
+      "fullName": "iOfficeAI/AionUi",
+      "description": "免费、本地、开源的Cowork ，适用于Gemini CLI、Claude Code、Codex、Opencode、Qwen Code、Goose Cli、Auggie等| 🌟 Star ，如果您喜欢！",
+      "language": "TypeScript",
+      "stars": 10622,
+      "forks": 812,
+      "periodStars": 5288,
+      "url": "https://github.com/iOfficeAI/AionUi",
+      "rankChange": "same",
+      "rankChangeValue": 0,
+      "yesterdayPosition": 2
+    },
+    {
+      "position": 3,
+      "author": "VectifyAI",
+      "repoName": "PageIndex",
+      "fullName": "VectifyAI/PageIndex",
+      "description": "📑 PageIndex ：无矢量、基于推理的RAG的文档索引",
+      "language": "Python",
+      "stars": 9054,
+      "forks": 665,
+      "periodStars": 3307,
+      "url": "https://github.com/VectifyAI/PageIndex",
+      "rankChange": "same",
+      "rankChangeValue": 0,
+      "yesterdayPosition": 3
+    },
+    {
+      "position": 4,
+      "author": "obra",
+      "repoName": "superpowers",
+      "fullName": "obra/superpowers",
+      "description": "有效的代理技能框架和软件开发方法。",
+      "language": "Shell",
+      "stars": 35966,
+      "forks": 2746,
+      "periodStars": 7732,
+      "url": "https://github.com/obra/superpowers",
+      "rankChange": "same",
+      "rankChangeValue": 0,
+      "yesterdayPosition": 4
+    },
+    {
+      "position": 5,
+      "author": "OpenBMB",
+      "repoName": "UltraRAG",
+      "fullName": "OpenBMB/UltraRAG",
+      "description": "UltraRAG v3 ：用于构建复杂创新RAG管道的低代码MCP框架",
+      "language": "Python",
+      "stars": 4045,
+      "forks": 285,
+      "periodStars": 1300,
+      "url": "https://github.com/OpenBMB/UltraRAG",
+      "rankChange": "same",
+      "rankChangeValue": 0,
+      "yesterdayPosition": 5
+    }
+  ]
+}
