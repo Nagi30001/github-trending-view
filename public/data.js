@@ -1,10 +1,112 @@
 // 自动生成的数据文件 - 请勿手动编辑
-// 生成时间: 2026-01-27T16:20:32.774Z
-// 包含数据: 69 个文件
+// 生成时间: 2026-01-28T01:05:28.129Z
+// 包含数据: 72 个文件
 // 配置: 保留最近 30 天的数据
 
 window.GITHUB_TRENDING_DATA = {
   "daily": [
+    {
+      "date": "2026-01-28",
+      "period": "daily",
+      "data": {
+        "date": "2026-01-28",
+        "timestamp": "2026-01-28T01:05:20.070Z",
+        "period": "daily",
+        "repositories": [
+          {
+            "position": 1,
+            "author": "badlogic",
+            "repoName": "pi-mono",
+            "fullName": "badlogic/pi-mono",
+            "description": "AI代理工具包：编码代理CLI、统一LLM API、TUI和Web UI库、Slack bot、vLLM pods",
+            "language": "TypeScript",
+            "stars": 2716,
+            "forks": 337,
+            "periodStars": 118,
+            "url": "https://github.com/badlogic/pi-mono",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 1
+          },
+          {
+            "position": 2,
+            "author": "supermemoryai",
+            "repoName": "supermemory",
+            "fullName": "supermemoryai/supermemory",
+            "description": "内存引擎和应用程序，速度极快，可扩展。人工智能时代的内存API。",
+            "language": "TypeScript",
+            "stars": 15563,
+            "forks": 1588,
+            "periodStars": 435,
+            "url": "https://github.com/supermemoryai/supermemory",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 2
+          },
+          {
+            "position": 3,
+            "author": "Blaizzy",
+            "repoName": "mlx-audio",
+            "fullName": "Blaizzy/mlx-audio",
+            "description": "基于Apple MLX框架构建的文本到语音(TTS)、语音到文本(STT)和语音到语音(STS)库，为Apple Silicon提供高效的语音分析。",
+            "language": "Python",
+            "stars": 5438,
+            "forks": 391,
+            "periodStars": 458,
+            "url": "https://github.com/Blaizzy/mlx-audio",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 3
+          },
+          {
+            "position": 4,
+            "author": "Free-TV",
+            "repoName": "IPTV",
+            "fullName": "Free-TV/IPTV",
+            "description": "免费电视频道的M3U播放列表",
+            "language": "Python",
+            "stars": 12558,
+            "forks": 1881,
+            "periodStars": 295,
+            "url": "https://github.com/Free-TV/IPTV",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 4
+          },
+          {
+            "position": 5,
+            "author": "hashicorp",
+            "repoName": "vault",
+            "fullName": "hashicorp/vault",
+            "description": "用于机密管理、加密即服务和特权访问管理的工具",
+            "language": "Go",
+            "stars": 34107,
+            "forks": 4523,
+            "periodStars": 13,
+            "url": "https://github.com/hashicorp/vault",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 5
+          },
+          {
+            "position": 6,
+            "author": "Shubhamsaboo",
+            "repoName": "awesome-llm-apps",
+            "fullName": "Shubhamsaboo/awesome-llm-apps",
+            "description": "集合使用OpenAI、Anthropic、Gemini和开源模型的AI Agent和RAG的优秀LLM应用程序。",
+            "language": "Python",
+            "stars": 90163,
+            "forks": 13017,
+            "periodStars": 294,
+            "url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 6
+          }
+        ],
+        "totalCount": 6
+      }
+    },
     {
       "date": "2026-01-27",
       "period": "daily",
@@ -3497,6 +3599,108 @@ window.GITHUB_TRENDING_DATA = {
   ],
   "weekly": [
     {
+      "date": "2026-01-28",
+      "period": "weekly",
+      "data": {
+        "date": "2026-01-28",
+        "timestamp": "2026-01-28T01:05:22.259Z",
+        "period": "weekly",
+        "repositories": [
+          {
+            "position": 1,
+            "author": "remotion-dev",
+            "repoName": "remotion",
+            "fullName": "remotion-dev/remotion",
+            "description": "🎥 使用React以编程方式制作视频",
+            "language": "TypeScript",
+            "stars": 32862,
+            "forks": 1966,
+            "periodStars": 7200,
+            "url": "https://github.com/remotion-dev/remotion",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 1
+          },
+          {
+            "position": 2,
+            "author": "VectifyAI",
+            "repoName": "PageIndex",
+            "fullName": "VectifyAI/PageIndex",
+            "description": "📑 PageIndex ：无矢量、基于推理的RAG的文档索引",
+            "language": "Python",
+            "stars": 10137,
+            "forks": 743,
+            "periodStars": 4241,
+            "url": "https://github.com/VectifyAI/PageIndex",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 2
+          },
+          {
+            "position": 3,
+            "author": "iOfficeAI",
+            "repoName": "AionUi",
+            "fullName": "iOfficeAI/AionUi",
+            "description": "免费、本地、开源的全天候Cowork和Clawdbot ，适用于Gemini CLI、Claude Code、Codex、OpenCode、Qwen Code、Goose CLI、Auggie等| 🌟 Star ，如果您喜欢！",
+            "language": "TypeScript",
+            "stars": 11347,
+            "forks": 860,
+            "periodStars": 3979,
+            "url": "https://github.com/iOfficeAI/AionUi",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 3
+          },
+          {
+            "position": 4,
+            "author": "block",
+            "repoName": "goose",
+            "fullName": "block/goose",
+            "description": "开源、可扩展的AI代理，超越代码建议-使用任何LLM安装、执行、编辑和测试",
+            "language": "Rust",
+            "stars": 29373,
+            "forks": 2646,
+            "periodStars": 3228,
+            "url": "https://github.com/block/goose",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 4
+          },
+          {
+            "position": 5,
+            "author": "obra",
+            "repoName": "superpowers",
+            "fullName": "obra/superpowers",
+            "description": "有效的代理技能框架和软件开发方法。",
+            "language": "Shell",
+            "stars": 38025,
+            "forks": 2901,
+            "periodStars": 7222,
+            "url": "https://github.com/obra/superpowers",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 5
+          },
+          {
+            "position": 6,
+            "author": "anthropics",
+            "repoName": "skills",
+            "fullName": "anthropics/skills",
+            "description": "座席技能的公共存储库",
+            "language": "Python",
+            "stars": 55711,
+            "forks": 5432,
+            "periodStars": 8921,
+            "url": "https://github.com/anthropics/skills",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 6
+          }
+        ],
+        "totalCount": 6
+      }
+    },
+    {
       "date": "2026-01-27",
       "period": "weekly",
       "data": {
@@ -6812,6 +7016,228 @@ window.GITHUB_TRENDING_DATA = {
     }
   ],
   "monthly": [
+    {
+      "date": "2026-01-28",
+      "period": "monthly",
+      "data": {
+        "date": "2026-01-28",
+        "timestamp": "2026-01-28T01:05:28.058Z",
+        "period": "monthly",
+        "repositories": [
+          {
+            "position": 1,
+            "author": "anomalyco",
+            "repoName": "opencode",
+            "fullName": "anomalyco/opencode",
+            "description": "开源编码代理。",
+            "language": "TypeScript",
+            "stars": 90137,
+            "forks": 8273,
+            "periodStars": 47271,
+            "url": "https://github.com/anomalyco/opencode",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 1
+          },
+          {
+            "position": 2,
+            "author": "obra",
+            "repoName": "superpowers",
+            "fullName": "obra/superpowers",
+            "description": "有效的代理技能框架和软件开发方法。",
+            "language": "Shell",
+            "stars": 38025,
+            "forks": 2901,
+            "periodStars": 25689,
+            "url": "https://github.com/obra/superpowers",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 2
+          },
+          {
+            "position": 3,
+            "author": "anthropics",
+            "repoName": "skills",
+            "fullName": "anthropics/skills",
+            "description": "座席技能的公共存储库",
+            "language": "Python",
+            "stars": 55711,
+            "forks": 5432,
+            "periodStars": 27690,
+            "url": "https://github.com/anthropics/skills",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 3
+          },
+          {
+            "position": 4,
+            "author": "BloopAI",
+            "repoName": "vibe-kanban",
+            "fullName": "BloopAI/vibe-kanban",
+            "description": "从Claude Code、Codex或任何编码代理中获得10倍的好处",
+            "language": "Rust",
+            "stars": 19416,
+            "forks": 1806,
+            "periodStars": 12664,
+            "url": "https://github.com/BloopAI/vibe-kanban",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 4
+          },
+          {
+            "position": 5,
+            "author": "anthropics",
+            "repoName": "claude-code",
+            "fullName": "anthropics/claude-code",
+            "description": "Claude Code是一个代理编码工具，它位于您的终端中，了解您的代码库，并通过执行日常任务、解释复杂代码和处理git工作流程（所有这些都通过自然语言命令）来帮助您更快地进行编码。",
+            "language": "Shell",
+            "stars": 61444,
+            "forks": 4586,
+            "periodStars": 12602,
+            "url": "https://github.com/anthropics/claude-code",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 5
+          },
+          {
+            "position": 6,
+            "author": "shareAI-lab",
+            "repoName": "learn-claude-code",
+            "fullName": "shareAI-lab/learn-claude-code",
+            "description": "Bash是您所需要的！只需16行代码即可编写claude代码",
+            "language": "Python",
+            "stars": 15534,
+            "forks": 3451,
+            "periodStars": 3748,
+            "url": "https://github.com/shareAI-lab/learn-claude-code",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 6
+          },
+          {
+            "position": 7,
+            "author": "usememos",
+            "repoName": "memos",
+            "fullName": "usememos/memos",
+            "description": "开源、自托管的笔记记录服务。您的想法，您的数据，您的控制权—无需跟踪，无需广告，无需订阅费。",
+            "language": "Go",
+            "stars": 55959,
+            "forks": 4014,
+            "periodStars": 8600,
+            "url": "https://github.com/usememos/memos",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 7
+          },
+          {
+            "position": 8,
+            "author": "remotion-dev",
+            "repoName": "remotion",
+            "fullName": "remotion-dev/remotion",
+            "description": "🎥 使用React以编程方式制作视频",
+            "language": "TypeScript",
+            "stars": 32862,
+            "forks": 1966,
+            "periodStars": 7579,
+            "url": "https://github.com/remotion-dev/remotion",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 8
+          },
+          {
+            "position": 9,
+            "author": "bytedance",
+            "repoName": "UI-TARS-desktop",
+            "fullName": "bytedance/UI-TARS-desktop",
+            "description": "开源多模态人工智能代理堆栈：连接尖端人工智能模型和代理基础设施",
+            "language": "TypeScript",
+            "stars": 24917,
+            "forks": 2406,
+            "periodStars": 4848,
+            "url": "https://github.com/bytedance/UI-TARS-desktop",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 9
+          },
+          {
+            "position": 10,
+            "author": "steveyegge",
+            "repoName": "beads",
+            "fullName": "steveyegge/beads",
+            "description": "Beads -编码代理的内存升级",
+            "language": "Go",
+            "stars": 13206,
+            "forks": 788,
+            "periodStars": 6718,
+            "url": "https://github.com/steveyegge/beads",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 10
+          },
+          {
+            "position": 11,
+            "author": "Lissy93",
+            "repoName": "web-check",
+            "fullName": "Lissy93/web-check",
+            "description": "用于分析任何网站的一🕵️‍♂️体化OSINT工具",
+            "language": "TypeScript",
+            "stars": 31231,
+            "forks": 2441,
+            "periodStars": 4176,
+            "url": "https://github.com/Lissy93/web-check",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 11
+          },
+          {
+            "position": 12,
+            "author": "ComposioHQ",
+            "repoName": "awesome-claude-skills",
+            "fullName": "ComposioHQ/awesome-claude-skills",
+            "description": "用于自定义Claude AI工作流程的精选Claude技能、资源和工具列表",
+            "language": "Python",
+            "stars": 26916,
+            "forks": 2610,
+            "periodStars": 15040,
+            "url": "https://github.com/ComposioHQ/awesome-claude-skills",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 12
+          },
+          {
+            "position": 13,
+            "author": "VectifyAI",
+            "repoName": "PageIndex",
+            "fullName": "VectifyAI/PageIndex",
+            "description": "📑 PageIndex ：无矢量、基于推理的RAG的文档索引",
+            "language": "Python",
+            "stars": 10137,
+            "forks": 743,
+            "periodStars": 5627,
+            "url": "https://github.com/VectifyAI/PageIndex",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 13
+          },
+          {
+            "position": 14,
+            "author": "virattt",
+            "repoName": "dexter",
+            "fullName": "virattt/dexter",
+            "description": "深入金融研究的自主代理",
+            "language": "TypeScript",
+            "stars": 9159,
+            "forks": 1116,
+            "periodStars": 4779,
+            "url": "https://github.com/virattt/dexter",
+            "rankChange": "same",
+            "rankChangeValue": 0,
+            "yesterdayPosition": 14
+          }
+        ],
+        "totalCount": 14
+      }
+    },
     {
       "date": "2026-01-27",
       "period": "monthly",
@@ -12340,8 +12766,8 @@ window.GITHUB_TRENDING_DATA = {
     }
   ],
   "meta": {
-    "generatedAt": "2026-01-27T16:20:32.756Z",
-    "totalDates": 23,
+    "generatedAt": "2026-01-28T01:05:28.109Z",
+    "totalDates": 24,
     "config": {
       "maxDailyFiles": 30,
       "maxWeeklyFiles": 12,
