@@ -1,0 +1,67 @@
+{
+  "date": "2026-04-03",
+  "timestamp": "2026-04-03T01:25:58.436Z",
+  "period": "daily",
+  "repositories": [
+    {
+      "position": 1,
+      "author": "siddharthvaddem",
+      "repoName": "openscreen",
+      "fullName": "siddharthvaddem/openscreen",
+      "description": "免费创建令人惊叹的演示。开源，无订阅，无水印，免费用于商业用途。Screen Studio的替代方案。",
+      "language": "TypeScript",
+      "stars": 15927,
+      "forks": 1084,
+      "periodStars": 2573,
+      "url": "https://github.com/siddharthvaddem/openscreen",
+      "rankChange": "same",
+      "rankChangeValue": 0,
+      "yesterdayPosition": 1
+    },
+    {
+      "position": 2,
+      "author": "Yeachan-Heo",
+      "repoName": "oh-my-codex",
+      "fullName": "Yeachan-Heo/oh-my-codex",
+      "description": "OmX -哦，我的codeX ：您的codex并不孤单。添加挂钩、客服代表团队、HUD等。",
+      "language": "TypeScript",
+      "stars": 11765,
+      "forks": 1092,
+      "periodStars": 2867,
+      "url": "https://github.com/Yeachan-Heo/oh-my-codex",
+      "rankChange": "same",
+      "rankChangeValue": 0,
+      "yesterdayPosition": 2
+    },
+    {
+      "position": 3,
+      "author": "asgeirtj",
+      "repoName": "system_prompts_leaks",
+      "fullName": "asgeirtj/system_prompts_leaks",
+      "description": "从ChatGPT （ GPT-5.4、GPT-5.3、Codex ）、Claude （ Opus 4.6、Sonnet 4.6、Claude Code ）、Gemini （ 3.1 Pro、3 Flash、CLI ）、Grok （ 4.2、4 ）、Perplexity等提取系统提示。定期更新。",
+      "language": "",
+      "stars": 36383,
+      "forks": 6012,
+      "periodStars": 306,
+      "url": "https://github.com/asgeirtj/system_prompts_leaks",
+      "rankChange": "same",
+      "rankChangeValue": 0,
+      "yesterdayPosition": 3
+    },
+    {
+      "position": 4,
+      "author": "sherlock-project",
+      "repoName": "sherlock",
+      "fullName": "sherlock-project/sherlock",
+      "description": "通过社交网络中的用户名查找社交媒体帐户",
+      "language": "Python",
+      "stars": 77296,
+      "forks": 9069,
+      "periodStars": 827,
+      "url": "https://github.com/sherlock-project/sherlock",
+      "rankChange": "same",
+      "rankChangeValue": 0,
+      "yesterdayPosition": 4
+    }
+  ]
+}
