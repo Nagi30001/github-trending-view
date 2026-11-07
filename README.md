@@ -94,6 +94,32 @@ schedule:
   # 每小时: '0 * * * *'
 ```
 
+## 📤 上传到 GHStars
+
+采集 workflow（`fetch-trending.yml`）在数据提交与 Pages 部署触发之后，会将当日的
+`data/$TODAY/{daily,weekly,monthly}.json` 依次上传到 GHStars 平台
+（`POST $GHSTARS_UPLOAD_URL/biz/c/tenant/ghstars/trending/upload`，Bearer Token 鉴权）。
+
+### 配置 Secrets
+
+在仓库 **Settings → Secrets and variables → Actions** 中添加两个 Repository Secrets：
+
+| Secret | 说明 |
+|--------|------|
+| `GHSTARS_UPLOAD_URL` | GHStars 后端地址，如 `http://localhost:82`（本地）或生产域名，不带末尾斜杠 |
+| `GHSTARS_UPLOAD_TOKEN` | 上传令牌，须与后端配置 `ghstars.trending-upload-token`（yml）一致 |
+
+两个 Secrets 均未配置时，上传步骤会打印提示并 **以 exit 0 跳过**，不影响现有的
+采集 / 提交 / Pages 部署流程（首次接入是渐进的，配置好后重跑 workflow 即可）。
+
+### 上传时机与失败可见性
+
+- **时机**：每 8 小时采集完成并提交数据后自动上传（UTC 0:00 / 8:00 / 16:00）。
+- **失败可见性**：
+  - 平台业务错误（HTTP 200 + body `code != 200`）会被步骤判定为失败，Actions 中该步骤**红显**；
+  - 某次上传失败不影响下次采集——下一次运行会重新上传当日（`$TODAY`）的数据，自动补齐；
+  - 网络错误（`curl -sS` 非零退出）同样导致步骤红显。
+
 ## 📊 数据格式
 
 每个数据文件包含以下结构：

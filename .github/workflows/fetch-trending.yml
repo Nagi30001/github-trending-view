@@ -50,3 +50,25 @@ jobs:
             -f event_type=deploy_static
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload to GHStars
+        if: success()
+        env:
+          GHSTARS_UPLOAD_URL: ${{ secrets.GHSTARS_UPLOAD_URL }}
+          GHSTARS_UPLOAD_TOKEN: ${{ secrets.GHSTARS_UPLOAD_TOKEN }}
+        run: |
+          if [ -z "$GHSTARS_UPLOAD_URL" ] || [ -z "$GHSTARS_UPLOAD_TOKEN" ]; then
+            echo "GHSTARS secrets 未配置，跳过上传（首次接入请配置 repo secrets 后重跑）"
+            exit 0
+          fi
+          TODAY=$(date -u +%F) # 与 fetch-trending.js 的 UTC 日期目录一致
+          for period in daily weekly monthly; do
+            file="data/$TODAY/$period.json"
+            [ -f "$file" ] || { echo "缺少 $file"; exit 1; }
+            resp=$(curl -sS --max-time 60 -X POST "$GHSTARS_UPLOAD_URL/biz/c/tenant/ghstars/trending/upload" \
+              -H "Authorization: Bearer $GHSTARS_UPLOAD_TOKEN" \
+              -H "Content-Type: application/json" \
+              --data-binary @"$file") || { echo "网络失败 [$period]"; exit 1; }
+            echo "$resp" | grep -q '"code":200,' || { echo "上传失败 [$period]: $resp"; exit 1; }
+            echo "已上传 $period"
+          done
